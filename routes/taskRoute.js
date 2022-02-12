@@ -11,7 +11,8 @@ router.get('/:taskId', authenticateToken,async(req,res)=> {
     var ifSubmitted = false
     const task = await Task.findById(taskId)
     // check if task is due and if user has submitted
-    ifDue = task.dueDate > Date.now() ? true : false;
+    try {
+        ifDue = task.dueDate > Date.now() ? true : false;
     if (task.submissions.length > 0) {
         for (var i =0; i < task.submissions.length; i++) {
             console.log(task.submissions[i])
@@ -24,6 +25,11 @@ router.get('/:taskId', authenticateToken,async(req,res)=> {
     }
     const submissions = await Submission.find({taskId:taskId})
     res.render('task', {task, user, ifDue, ifSubmitted, submissions})
+    } catch (error) {
+        console.log(error)
+        res.render('error')
+    }
+    
 })
 
 router.post('/submit', authenticateToken, (req,res)=> {
@@ -40,7 +46,10 @@ router.post('/submit', authenticateToken, (req,res)=> {
         const user = await User.findOneAndUpdate({email:userEmail}, {$push:{tasks:task.id}})
         res.render('submitSuccess', {task, user})
     }
-        )
+        ).catch(error => {
+            console.log(error)
+            res.render('error')
+        })
 })
 
 module.exports = router

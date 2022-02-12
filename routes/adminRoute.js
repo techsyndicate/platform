@@ -25,14 +25,23 @@ router.post('/task', authenticateToken, isAdmin, (req, res) => {
     task.save().then(task => {
         console.log('Task Added')
         res.render('admin/taskSuccess', {name, description, dueDate})
+    }).catch(err => {
+        console.log(err)
+        res.render('error')
     })
 })
 
 router.post('/review', authenticateToken, isAdmin, async (req,res)=> {
     const { taskId, reviewComment, points, userEmail } = req.body;
-    const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment, points, isReviewed:true}})
+    try {
+        const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment, points, isReviewed:true}})
     const user = await User.findOneAndUpdate({email:userEmail}, {$inc:{points:points}})
-    res.render('admin/reviewSuccess', {submission})
+    res.render('admin/reviewSuccess', {submission})    
+    } catch (err) {
+        console.log(err)
+        res.render('error')
+    }
+    
 })
 
 
@@ -46,13 +55,19 @@ router.get('/users', authenticateToken, isAdmin, async (req,res)=> {
 
 router.post('/users/ban', authenticateToken, isAdmin, async (req,res)=> {
     const {userId} = req.body;
-    const user = await User.findByIdAndUpdate(userId, {$set:{isBanned:true}})
+    const user = await User.findByIdAndUpdate(userId, {$set:{isBanned:true}}).catch(err => {
+        console.log(err)
+        res.render('error')
+    })
     console.log(user)
     res.render('admin/userSuccess', {user, activity:'banned'})
 })
 router.post('/users/dataClear', authenticateToken, isAdmin, async (req,res)=>{
     const {userId} = req.body;
-    const user = await User.findByIdAndUpdate(userId, {$set:{tasks:[], points:0, isBanned:false}})
+    const user = await User.findByIdAndUpdate(userId, {$set:{tasks:[], points:0, isBanned:false}}).catch(err => {
+        console.log(err)
+        res.render('error')
+    })
     res.render('admin/userSuccess', {user, activity:'data cleared'})
 })
 
