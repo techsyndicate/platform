@@ -31,9 +31,29 @@ router.post('/task', authenticateToken, isAdmin, (req, res) => {
 router.post('/review', authenticateToken, isAdmin, async (req,res)=> {
     const { taskId, reviewComment, points, userEmail } = req.body;
     const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment, points, isReviewed:true}})
+    const user = await User.findOneAndUpdate({email:userEmail}, {$inc:{points:points}})
     res.render('admin/reviewSuccess', {submission})
 })
 
 
+router.get('/users', authenticateToken, isAdmin, async (req,res)=> {
+    // TODO: uncheck this comment for final prod
+    // const users = await User.find({isAdmin:false});
+    const users = await User.find({});
+    res.render('admin/users', {users})
+
+})
+
+router.post('/users/ban', authenticateToken, isAdmin, async (req,res)=> {
+    const {userId} = req.body;
+    const user = await User.findByIdAndUpdate(userId, {$set:{isBanned:true}})
+    console.log(user)
+    res.render('admin/userSuccess', {user, activity:'banned'})
+})
+router.post('/users/dataClear', authenticateToken, isAdmin, async (req,res)=>{
+    const {userId} = req.body;
+    const user = await User.findByIdAndUpdate(userId, {$set:{tasks:[], points:0, isBanned:false}})
+    res.render('admin/userSuccess', {user, activity:'data cleared'})
+})
 
 module.exports=router;

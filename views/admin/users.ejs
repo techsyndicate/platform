@@ -1,0 +1,24 @@
+<h2>Users List</h2>
+<br>
+<% for( let i = 0; i < users.length; i++ ) { %>
+<p><%= users[i].email %></p>
+<p><%= users[i].name %></p>
+<p><%= users[i].points %></p>
+<P>Banned: <%= users[i].isBanned %> </P>
+<br>
+<h5>Tasks:</h5>
+<% for( let j = 0; j < users[i].tasks.length; j++ ) { %>
+<a href="/task/<%= users[i].tasks[j] %>"> Task <%= j+1 %> </a>
+
+<% } %>
+<form action="/admin/users/ban" method="post">
+    <input name="userId" value="<%= users[i].id %>" type="hidden">
+    <button type="submit">Ban</button>
+</form>
+<form action="/admin/users/dataClear" method="post">
+    <input name="userId" value="<%= users[i].id %>" type="hidden">
+    <button type="submit">Clear Data</button>
+</form>
+<hr>
+<br>
+<% } %>

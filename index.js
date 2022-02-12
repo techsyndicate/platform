@@ -37,3 +37,7 @@ mongoose.connect(`mongodb+srv://techsyndicate:${pass}@cluster0.pbyaj.mongodb.net
     }).then(() => console.log('Connected to MongoDB'))
 app.listen(port, () => console.log(`Server started on port ${port}`))
 
+// 404 page
+app.use((req, res, next) => {
+    res.render('404')
+})

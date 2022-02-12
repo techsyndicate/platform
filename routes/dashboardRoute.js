@@ -9,7 +9,6 @@ router.get('/',authenticateToken, async (req,res)=> {
     const userId = req.user.id
     const user = await User.findById(userId)
     const userTasks = user.tasks 
-    
     const openTasks = []
     const closedTasks = []
     const submittedTasks = []
@@ -41,6 +40,11 @@ router.get('/',authenticateToken, async (req,res)=> {
     }
 
     res.render('dashboard', {openTasks, closedTasks, submittedTasks, reviewedTasks})
+})
+router.get('/userProfile', authenticateToken, (req,res)=>{
+    const user = req.user
+    res.render('userProfile', {user})
+
 })
 
 module.exports = router;

@@ -1,9 +1,21 @@
 <h1>Admin Page</h1>
 
 <h2>Tasks</h2>
-<p>Task List</p>
-<!-- list all the tasks -->
+<h4>Task List</h4>
+<br>
+<% for( let i = 0; i < tasks.length; i++ ) { %>
+<p><%= tasks[i].name %></p>
+<p><%= tasks[i].description%> </p>
+<p><%= tasks[i].points %></p>
+<p><%= tasks[i].category %></p>
+<hr>
+<br>
+<% } %>
 
 <form action="/admin/task" method="get">
     <button type="submit">Add Task</button>
+</form>
+
+<form action="/admin/users" method="get">
+    <button type="submit">Users</button>
 </form>
