@@ -1,0 +1,50 @@
+<h2>Task</h2>
+
+<!-- check if submitted and if due -->
+<% if (ifDue) { %>
+<% if (ifSubmitted) { %>
+<% if (task.isReviewed) { %>
+<h2> The Task has been reviewed</h2>
+<%= task.link%>
+<%= task.points %>
+<%= reviewComment %>
+
+<% } %>
+<% } else { %>
+<h3>Submit</h3>
+<form action="/task/submit" method="post">
+    <input name="taskId" value="<%= task.id %>" type="hidden">
+    <input name="userEmail" value="<%= user.email %>" type="hidden">
+    <input name="link" type="url" placeholder="Link" required autocomplete="off"> <br><br>
+    <input name="notes" type="text" placeholder="Description" autocomplete="off"> <br><br>
+    <button type="submit">Submit Task</button>
+</form>
+<% } %>
+<% } else { %>
+<h3>The task is past due</h3>
+<% } %>
+
+<!-- Admin View -->
+<% if (user.isAdmin) { %>
+<h3>Admin View</h3>
+<!-- list all submissions -->
+<% if (submissions.length > 0) { %>
+<h4>Submissions</h4>
+<ul>
+    <% for (var i = 0; i < submissions.length; i++) { %>
+    <!-- TODO: Make collabsable with name as heading which opens up further details, add total points field -->
+    Reviewed: <%= submissions[i].isReviewed %>
+    Points: <%= submissions[i].points %>
+    Total Points: <%= task.points %>
+    <li><%= submissions[i].link %> - <%= submissions[i].notes %> <%= submissions[i].userEmail %> </li>
+    <form action="/admin/review" method="post">
+        <input name="taskId" value="<%= task.id %>" type="hidden">
+        <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
+        <input name="points" type="number" placeholder="Points" required autocomplete="off"> <br><br>
+        <input name="comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
+        <button type="submit">Review</button>
+    </form>
+    <% } %>
+</ul>
+<% } %>
+<% } %>
