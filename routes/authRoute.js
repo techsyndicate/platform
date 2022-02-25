@@ -2,6 +2,7 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const axios = require('axios');
+const Task = require('../models/taskModel');
 
 
 router.get('/login', (req, res) => {
@@ -97,5 +98,7 @@ router.get('/logout', (req, res) => {
     res.clearCookie('token')
     res.redirect('/')
 })
+
+
 
 module.exports = router;

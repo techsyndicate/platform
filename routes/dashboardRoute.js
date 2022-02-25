@@ -45,9 +45,17 @@ router.get('/',authenticateToken, banCheck, async (req,res)=> {
     } 
 
 })
-router.get('/userProfile', authenticateToken, (req,res)=>{
+router.get('/userProfile', authenticateToken, banCheck,async (req,res)=>{
     const user = req.user
-    res.render('userProfile', {user})
+    const userId = req.user.id 
+ const taskIds = req.user.tasks
+ const tasks = []
+ for (var i =0;  i < taskIds.length; i++) {
+     const taskId = taskIds[i] 
+    const task = await Task.findById(taskId)
+    tasks.push(task)
+ }
+    res.render('userProfile', {user, tasks})
 
 })
 
