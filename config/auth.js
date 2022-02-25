@@ -25,5 +25,12 @@ module.exports = {
         } else {
             return res.redirect('/dashboard')
         }
+    }, 
+    banCheck: function (req,res,next) {
+        if (req.user.isBanned) {
+            return res.render('banned')
+        } else {
+            return next()
+        }
     }
 }

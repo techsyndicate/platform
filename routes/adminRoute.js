@@ -1,10 +1,10 @@
-const { isAdmin, authenticateToken } = require('../config/auth');
+const { isAdmin, authenticateToken, banCheck } = require('../config/auth');
 const Task = require('../models/taskModel');
 const router = require('express').Router();
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
 
-router.get('/',authenticateToken, isAdmin, async (req, res) => {
+router.get('/',authenticateToken, isAdmin, banCheck, async (req, res) => {
     const tasks = await Task.find({});
     res.render('admin/index', {tasks})
 })
@@ -13,7 +13,7 @@ router.get('/task', authenticateToken, isAdmin, (req, res) => {
     res.render('admin/task')
 })
 
-router.post('/task', authenticateToken, isAdmin, (req, res) => {
+router.post('/task', authenticateToken, isAdmin,banCheck, (req, res) => {
     const { name, description, points, category, dueDate } = req.body;
     const task = new Task({
         name,
@@ -31,7 +31,7 @@ router.post('/task', authenticateToken, isAdmin, (req, res) => {
     })
 })
 
-router.post('/review', authenticateToken, isAdmin, async (req,res)=> {
+router.post('/review', authenticateToken, isAdmin,banCheck,  async (req,res)=> {
     const { taskId, reviewComment, points, userEmail } = req.body;
     try {
         const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment, points, isReviewed:true}})
@@ -45,7 +45,7 @@ router.post('/review', authenticateToken, isAdmin, async (req,res)=> {
 })
 
 
-router.get('/users', authenticateToken, isAdmin, async (req,res)=> {
+router.get('/users', authenticateToken, isAdmin,banCheck, async (req,res)=> {
     // TODO: uncheck this comment for final prod
     // const users = await User.find({isAdmin:false});
     const users = await User.find({});
@@ -53,7 +53,7 @@ router.get('/users', authenticateToken, isAdmin, async (req,res)=> {
 
 })
 
-router.post('/users/ban', authenticateToken, isAdmin, async (req,res)=> {
+router.post('/users/ban', authenticateToken, isAdmin,banCheck, async (req,res)=> {
     const {userId} = req.body;
     const user = await User.findByIdAndUpdate(userId, {$set:{isBanned:true}}).catch(err => {
         console.log(err)
@@ -62,7 +62,7 @@ router.post('/users/ban', authenticateToken, isAdmin, async (req,res)=> {
     console.log(user)
     res.render('admin/userSuccess', {user, activity:'banned'})
 })
-router.post('/users/dataClear', authenticateToken, isAdmin, async (req,res)=>{
+router.post('/users/dataClear', authenticateToken, isAdmin,banCheck, async (req,res)=>{
     const {userId} = req.body;
     const user = await User.findByIdAndUpdate(userId, {$set:{tasks:[], points:0, isBanned:false}}).catch(err => {
         console.log(err)

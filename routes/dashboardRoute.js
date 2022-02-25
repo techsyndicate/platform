@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { authenticateToken } = require('../config/auth')
+const { authenticateToken, banCheck } = require('../config/auth')
 const Task = require('../models/taskModel')
 const Submission = require('../models/submissionModel')
 const User = require('../models/userModel')
 
-router.get('/',authenticateToken, async (req,res)=> { 
+router.get('/',authenticateToken, banCheck, async (req,res)=> { 
     try {
         const userId = req.user.id
         const user = await User.findById(userId)

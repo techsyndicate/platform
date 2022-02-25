@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { authenticateToken } = require('../config/auth');
+const { authenticateToken, banCheck } = require('../config/auth');
 const Task = require('../models/taskModel');
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
 
-router.get('/:taskId', authenticateToken,async(req,res)=> {
+router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
     const { taskId } = req.params;
     const user = req.user
     var ifDue = false
@@ -32,7 +32,7 @@ router.get('/:taskId', authenticateToken,async(req,res)=> {
     
 })
 
-router.post('/submit', authenticateToken, (req,res)=> {
+router.post('/submit', authenticateToken , banCheck, (req,res)=> {
     const { taskId, link, notes, userEmail } = req.body;
     const newSubmission = new Submission({
         taskId,

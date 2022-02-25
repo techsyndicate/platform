@@ -59,9 +59,6 @@ router.get("/callback", (req, res) => {
                             if (err) throw err 
                             res.cookie('token', token)
                             res.redirect('/dashboard')
-                        }).catch(error=> {
-                            console.log(error)
-                            res.render('error')
                         })
                     } else {
                         const newUser = new User({
@@ -73,9 +70,7 @@ router.get("/callback", (req, res) => {
                                 if (err) throw err 
                                 res.cookie('token', token)
                                 res.redirect('/dashboard')
-                            }).catch(error=> {
-                                console.log(error)
-                                res.render('error')})
+                            })
                         }).catch(error=> {
                          console.log(error)
                          res.render('error')   
@@ -96,6 +91,11 @@ router.get("/callback", (req, res) => {
         res.render('error')
     }
     )
+})
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('token')
+    res.redirect('/')
 })
 
 module.exports = router;
