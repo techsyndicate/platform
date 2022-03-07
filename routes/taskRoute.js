@@ -3,6 +3,7 @@ const { authenticateToken, banCheck } = require('../config/auth');
 const Task = require('../models/taskModel');
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
+const Log = require('../models/logModel')
 
 router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
     const { taskId } = req.params;
@@ -40,11 +41,26 @@ router.post('/submit', authenticateToken , banCheck, (req,res)=> {
         notes, 
         userEmail, 
     })
+    const getTask = await Task.findById(taskId)
+    const newLog = new Log({
+        user:req.user, 
+        task: getTask,
+        pointsChange: 0,
+        activity: 'Submitted a task'
+
+    })
+    
     newSubmission.save().then(async submission => {
-        const id = submission.id
+        newLog.save().then(log => {
+            const id = submission.id
         const task = await Task.findByIdAndUpdate(taskId, {$push:{submissions:id}})
         const user = await User.findOneAndUpdate({email:userEmail}, {$push:{tasks:task.id}})
         res.render('submitSuccess', {task, user})
+        }).catch(error => {
+            console.log(error)
+            res.render('error')
+        })
+        
     }
         ).catch(error => {
             console.log(error)
