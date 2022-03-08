@@ -3,6 +3,7 @@ const Task = require('../models/taskModel');
 const router = require('express').Router();
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
+const Log = require('../models/logModel')
 
 router.get('/',authenticateToken, isAdmin, banCheck, async (req, res) => {
     const tasks = await Task.find({});
@@ -69,6 +70,27 @@ router.post('/users/dataClear', authenticateToken, isAdmin,banCheck, async (req,
         res.render('error')
     })
     res.render('admin/userSuccess', {user, activity:'data cleared'})
+})
+router.post('/chat', authenticateToken, isAdmin, banCheck, async (req,res)=> {
+    const {taskId, userEmail, comment} = req.body;
+    const task = await Task.findByIdAndUpdate(taskId, {$push:{chat:{userEmail, comment, fromAdmin:true}}}).catch(err => {
+        console.log(err)
+        res.render('error')
+    })
+    const user = await User.findOne({email:userEmail})
+    const newLog = new Log({
+        user: user,
+        task: task,
+        pointsChange: 0,
+        activity: 'chat'
+    }).save().then(doc => {
+        console.log(doc)
+        res.redirect('/task/'+taskId)
+    }).catch(err => {
+        console.log(err)
+        res.render('error')
+    })
+
 })
 
 module.exports=router;

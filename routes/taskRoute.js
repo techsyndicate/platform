@@ -25,7 +25,17 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
         }
     }
     const submissions = await Submission.find({taskId:taskId})
-    res.render('task', {task, user, ifDue, ifSubmitted, submissions})
+    let messages = await Task.findById(taskId)
+    messages = messages["chat"]
+    let userMessages = []
+    for (message in messages) {
+        
+        if (messages[message].userEmail === user.email) {
+            userMessages.push(messages[message])
+        }
+    }
+    
+    res.render('task', {task, user, ifDue, ifSubmitted, submissions, messages, userMessages})
     } catch (error) {
         console.log(error)
         res.render('error')
@@ -33,7 +43,7 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
     
 })
 
-router.post('/submit', authenticateToken , banCheck, (req,res)=> {
+router.post('/submit', authenticateToken , banCheck, async (req,res)=> {
     const { taskId, link, notes, userEmail } = req.body;
     const newSubmission = new Submission({
         taskId,
@@ -51,7 +61,7 @@ router.post('/submit', authenticateToken , banCheck, (req,res)=> {
     })
     
     newSubmission.save().then(async submission => {
-        newLog.save().then(log => {
+        newLog.save().then(async log => {
             const id = submission.id
         const task = await Task.findByIdAndUpdate(taskId, {$push:{submissions:id}})
         const user = await User.findOneAndUpdate({email:userEmail}, {$push:{tasks:task.id}})
@@ -67,5 +77,7 @@ router.post('/submit', authenticateToken , banCheck, (req,res)=> {
             res.render('error')
         })
 })
+
+
 
 module.exports = router

@@ -27,6 +27,10 @@ const taskSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    chat: {
+        type: Array,
+        default: []
+    }
 
     }, {timeStamps: true});
 
