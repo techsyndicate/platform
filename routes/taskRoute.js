@@ -11,8 +11,12 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
     var ifDue = false
     var ifSubmitted = false
     const task = await Task.findById(taskId)
+    if (!task) {
+        res.render('404')
+    }
     // check if task is due and if user has submitted
     try {
+        console.log(task)
         ifDue = task.dueDate > Date.now() ? true : false;
     if (task.submissions.length > 0) {
         for (var i =0; i < task.submissions.length; i++) {
@@ -78,6 +82,25 @@ router.post('/submit', authenticateToken , banCheck, async (req,res)=> {
         })
 })
 
-
+router.post('/chat', banCheck, authenticateToken, async (req,res)=> {
+    const {taskId, userEmail, comment} = req.body;
+    const task = await Task.findByIdAndUpdate(taskId, {$push:{chat:{userEmail, comment, fromAdmin:false}}}).catch(err => {
+        console.log(err)
+        res.render('error')
+    })
+    const user = await User.findOne({email:userEmail})
+    const newLog = new Log({
+        user: user,
+        task: task,
+        pointsChange: 0,
+        activity: 'chat'
+    }).save().then(doc => {
+        console.log(doc)
+        res.redirect('/task/'+taskId)
+    }).catch(err => {
+        console.log(err)
+        res.render('error')
+    })
+})
 
 module.exports = router

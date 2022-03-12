@@ -27,6 +27,15 @@ Admin: <%= userMessages[i].comment %> <br>
 You: <%= userMessages[i].comment %> <br>
 <% } %>
 <% } %>
+<% if (userMessages.length > 0) { %>
+<h2>Reply to Admin</h2>
+<form action="/task/chat" method="post">
+    <input name="taskId" value="<%= task.id %>" type="hidden">
+    <input name="userEmail" value="<%= user.email %>" type="hidden">
+    <input name="comment" type="text" placeholder="Message" required autocomplete="off"> <br>
+    <button type="submit">Submit Review</button>
+</form>
+<% } %>
 <% } %>
 <% } else { %>
 <h3>Submit</h3>
@@ -40,6 +49,12 @@ You: <%= userMessages[i].comment %> <br>
 <% } %>
 <% } else { %>
 <h3>The task is past due</h3>
+<p>
+    <%= task.name %>
+    <%= task.description %>
+    <%= task.due %>
+</p>
+
 <% } %>
 
 <!-- Admin View -->
@@ -59,7 +74,7 @@ You: <%= userMessages[i].comment %> <br>
         <input name="taskId" value="<%= task.id %>" type="hidden">
         <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
         <input name="points" type="number" placeholder="Points" required autocomplete="off"> <br><br>
-        <input name="comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
+        <input name=" comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
         <button type="submit">Review</button>
     </form>
     <h2>Chat</h2>
