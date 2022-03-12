@@ -93,4 +93,10 @@ router.post('/chat', authenticateToken, isAdmin, banCheck, async (req,res)=> {
 
 })
 
+router.get('/log', authenticateToken, banCheck, isAdmin, async (req,res)=> { 
+    const logs = await Log.find({}).sort({date:-1})
+    console.log(logs)
+    res.render('admin/log', {logs})
+})
+
 module.exports=router;

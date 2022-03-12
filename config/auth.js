@@ -20,6 +20,7 @@ module.exports = {
         }
     },
     isAdmin: function (req, res,next) {
+        console.log(req.user)
         if (req.user.isAdmin) {
             return next()
         } else {
@@ -27,6 +28,7 @@ module.exports = {
         }
     }, 
     banCheck: function (req,res,next) {
+        console.log(req)
         if (req.user.isBanned) {
             return res.render('banned')
         } else {

@@ -82,7 +82,7 @@ router.post('/submit', authenticateToken , banCheck, async (req,res)=> {
         })
 })
 
-router.post('/chat', banCheck, authenticateToken, async (req,res)=> {
+router.post('/chat', authenticateToken, banCheck, async (req,res)=> {
     const {taskId, userEmail, comment} = req.body;
     const task = await Task.findByIdAndUpdate(taskId, {$push:{chat:{userEmail, comment, fromAdmin:false}}}).catch(err => {
         console.log(err)
