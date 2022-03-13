@@ -54,6 +54,8 @@ router.get("/callback", (req, res) => {
             }
             axios.post('https://graph.microsoft.com/oidc/userinfo', null, configr).then(resp=> {
                 console.log(resp.data)
+                if (resp.data.email.contains('amity.edu')) {
+
                 User.findOne({email:resp.data.email}).then(user=> {
                     if (user) {
                         jwt.sign({email:resp.data.email}, process.env.SECRET, (err, token)=> {
@@ -78,6 +80,9 @@ router.get("/callback", (req, res) => {
                         })
                     } 
             })
+        } else {
+            res.render('error')
+        }
         }).catch
         (error => {
             console.log(error)
