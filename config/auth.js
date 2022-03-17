@@ -28,7 +28,6 @@ module.exports = {
         }
     }, 
     banCheck: function (req,res,next) {
-        console.log(req)
         if (req.user.isBanned) {
             return res.render('banned')
         } else {

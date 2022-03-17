@@ -53,8 +53,9 @@ router.get("/callback", (req, res) => {
             }
             }
             axios.post('https://graph.microsoft.com/oidc/userinfo', null, configr).then(resp=> {
-                console.log(resp.data)
-                if (resp.data.email.contains('amity.edu')) {
+                // check if email is a valid email
+                
+                if (resp.data.email.includes('amity.edu')) {
 
                 User.findOne({email:resp.data.email}).then(user=> {
                     if (user) {
