@@ -1,1 +1,31 @@
-<h1>Index</h1>
+
+<div class="landing-div ">
+    <h1>
+        Training <br>
+        <span>Platform</span>
+    </h2>
+    <img src="https://media.discordapp.net/attachments/844234171811233822/953711584461598720/Group_14.png?width=571&height=513" class="ts-snowglobe" alt="">
+</div>
+<script>
+    gsap.fromTo('.ts-snowglobe',{
+        opacity: 0,
+        y: -100
+    },{
+        opacity:1,
+        y: 0,
+        duration: 2,
+        ease: "elastic",
+        delay: 1,
+    })
+    gsap.fromTo('.landing-div h1',{
+        x: -1000,
+        transform: 'skew(20deg) '
+    },{
+        opacity: 1,
+        x: 0,
+        transform: 'skew(0deg)',
+        duration: 2,
+        ease: "back.out(1.7)",
+        delay: 1,
+    })
+</script>

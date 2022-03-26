@@ -1,1 +1,32 @@
-<h2>User Profile</h2>
+<div class="user-profile-div">
+    <h1>
+        Profile
+    </h1>
+    <div class="user-info">
+        <p>
+            <span>Name</span> <%=userInfo.name%>
+        </p>
+        <p>
+            <span>Email</span> <%=userInfo.email%>
+        </p>
+        <p>
+            <span>Points</span> <%=userInfo.points%>
+        </p>
+        <p>
+            <span>Tasks</span> <br>
+            <% if(userInfo.tasks.length > 0){ %>
+                <% for(var i = 0; i < userInfo.tasks.length; i++){ %>
+                    <%=userInfo.tasks[i].name%>
+                    <% if(i != userInfo.tasks.length - 1){ %>
+                        ,
+                    <% } %>
+                <% } %>
+            <% } else { %>
+                None
+            <% } %>
+        </p>
+    </div>
+    <a href="/logout">
+        Logout
+    </a>
+</div>

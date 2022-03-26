@@ -1,0 +1,285 @@
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url('../assets/fonts/sofia-pro.otf');
+}
+
+body{
+  background: #000;
+  color: #eee;
+  font-family: 'Sofia Pro';
+}
+.navbar{
+  list-style: none;
+  margin-top: 40px;
+  margin-left: 72.5%;
+  position: fixed;
+}
+.navbar li{
+  display: inline-block;
+  margin: 0 10px;
+}
+.navbar li a {
+  color: #eee;
+  font-size: 1.25vw;
+  text-decoration: none;
+  transition: all .5s ease;
+}
+.navbar li a::after{
+  content: '';
+  transition: all .5s ease;
+  width: 0;
+  display: block;
+  height: 2px;
+  background: #16e16e;
+}
+.navbar li a:hover::after{
+  width: 115%;
+}
+/*landing div*/
+.landing-div img{
+  display: block;
+  margin: 1.5% auto;
+  width: 90vh;
+  padding-top: 20px;
+}
+.landing-div h1{
+  position: absolute;
+  font-size: 7.5vw;
+  letter-spacing: 2px;
+  z-index: 10;
+  margin: 30% 5%;
+}
+.landing-div h1 span{
+  color: #16e16e;
+  letter-spacing: 2.5px;
+}
+/*profile div*/
+.user-profile-div h1{
+  color: #16e16e;
+  margin: 5% 7.5%;
+  letter-spacing: 2.5px;
+  font-size: 3.5vw;
+  position: absolute;
+}
+.user-info {
+  position: absolute;
+  margin: 15% 7.5%;
+}
+.user-info span{
+  color: #16e16e;
+  font-size: 1.5vw;
+}
+.user-profile-div a {
+  background: #191919;
+  color: #eee;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 35% 7.5%;
+  position: absolute;
+  transition: all .5s ease;
+  letter-spacing: 2.5px;
+}
+.user-profile-div a:hover{
+  transform: translateY(-10px);
+}
+/*admin panel*/
+.admin-panel h1{
+  color: #16e16e;
+  margin: 5% 7.5%;
+  letter-spacing: 2.5px;
+  font-size: 3.5vw;
+  position: absolute;
+}
+.admin-panel .forms-div{
+  display: flex;
+  position: absolute;
+  left: 7.5%;
+  top: 25%;
+  width: 50vh;
+}
+.admin-panel .forms-div form{
+  margin: 0 5%;
+}
+.admin-panel .forms-div form button{
+  background: #191919;
+  color: #eee;
+  width: 15vh;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1vw;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  transition: all .5s ease;
+  border: none;
+  font-family: 'Sofia Pro', sans-serif;
+  cursor: pointer;
+}
+.admin-panel .forms-div form button:hover{
+  transform: translateY(-10px);
+  color: #16e16e;
+}
+.tasks{
+  position: absolute;
+  top: 35%;
+  left: 7.5%;
+}
+.tasks h2{
+  font-size: 2.5vw;
+}
+.task-card{
+  background-color: #191919;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100vh;
+  margin-left: 2.5%;
+  margin-bottom: 2.5%;
+  transition: all .5s ease;
+  cursor: pointer;
+}
+.task-card:hover{
+  transform: translateY(-10px) scale(1.1);
+  box-shadow: 0 0 10px #111;
+}
+.task-card p{
+  padding-left: 20px;
+}
+.task-card p span{
+  color: #16e16e;
+}
+/*task add */
+.task-add-form h2{
+  color: #16e16e;
+  margin: 5% 7.5%;
+  letter-spacing: 2.5px;
+  font-size: 3.5vw;
+  position: absolute;
+}
+.task-add-form form{
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  width: 50vh;
+}
+.task-add-form form input{
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #eee;
+  width: 48vh;
+  font-size: 1vw;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-family: 'Sofia Pro', sans-serif;
+  transition: all .5s ease;
+}
+.task-add-form form input::placeholder{
+  color: #eee;
+}
+.task-add-form form input:focus{
+  outline: none;
+  width: 50vh;
+  border-bottom: 2px solid #16e16e;
+}
+.task-add-form form button{
+  background: #191919;
+  color: #eee;
+  width: 25vh;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.25vw;
+  letter-spacing: 1px;
+  font-weight: 700;
+  transition: all .5s ease;
+  border: none;
+  font-family: 'Sofia Pro', sans-serif;
+  cursor: pointer;
+  margin-top: 10%;
+}
+#due{
+  color: #eee;
+}
+/*leaderboard*/
+.leaderboard-div h1{
+  color: #16e16e;
+  position: absolute;
+  margin: 5% 7.5%;
+  font-size: 3.5vw;
+  letter-spacing: 1.5px;
+}
+.leaderboard-div #search{
+  position: absolute;
+  margin: 12.5% 7.5%;
+  position: absolute;
+  color: #eee;
+  border: none;
+  border-bottom: 2px solid #eee;
+  background: transparent;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-size: 1.25vw;
+  font-family: 'Sofia Pro', sans-serif;
+  transition: all .5s ease;
+}
+.leaderboard-div #search::placeholder{
+  color: #eee;
+}
+.leaderboard-div #search:focus{
+  outline: none;
+  border-bottom: 2px solid #16e16e;
+}
+.users{
+  position: absolute;
+  top: 32.5%;
+  left: 8.5%;
+}
+.users table{
+  border-collapse: collapse;
+  width: 150vh;
+  text-align: center;
+}
+.users table th{
+  background: #16e16e;
+  color: #191919;
+  padding: 10px;
+  font-size: 1.75vw;
+}
+.users table tbody td{
+  color: #eee;
+  padding: 10px;
+  font-size: 1.25vw;
+}
+.users table tbody tr:nth-child(even){
+  background-color: #191919;
+}
+/*admin users display*/
+.admin-users-display h2{
+  color: #16e16e;
+  position: absolute;
+  margin: 5% 7.5%;
+  font-size: 3.5vw;
+  letter-spacing: 2.5px;
+}
+.admin-users-display .user-div{
+  position: absolute;
+  margin: 15% 7.5%;
+}
+.admin-users-display .user-card{
+  background: #191919;
+  width: 100vh;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 2.5%;
+  transition: all .5s ease;
+  cursor: pointer;
+}
+.admin-users-display .user-card:hover{
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 10px #111;
+}
+.admin-users-display .user-card p span{
+  color: #16e16e;
+}

@@ -39,7 +39,7 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
         }
     }
     
-    res.render('task', {task, user, ifDue, ifSubmitted, submissions, messages, userMessages})
+    res.render('task', {task, user, ifDue, ifSubmitted, submissions, messages, userMessages,userInfo:req.user})
     } catch (error) {
         console.log(error)
         res.render('error')

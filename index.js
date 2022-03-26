@@ -1,7 +1,7 @@
 const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
-// const expressLayouts = require('express-ejs-layouts')
+const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 
 const cookieparser = require('cookie-parser')
@@ -10,12 +10,16 @@ require('dotenv').config()
 const app = express()
 const secret = process.env.SECRET
 app.set('view engine', 'ejs')
-// app.use(expressLayouts)
+app.use(expressLayouts)
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieparser())
 app.use(express.json())
 
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname+'/public'));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 const indexRoute = require('./routes/indexRoute')
 const authRoute = require('./routes/authRoute')

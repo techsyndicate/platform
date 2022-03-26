@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='description' content='Platform for techsyndicate'/>
+	<meta name="keywords" content="tech syndicate, ts, amity 46, aisg, technology club, cyberamity46, syndicateofamity46, techsyndicate46">
+	<meta name="robots" content="index, follow">
+	<meta name='author' content='Tech Syndicate'/>
+    <link rel='icon' type='image/png' href='https://github.com/techsyndicate/website/blob/main/public/assets/images/ts.png?raw=true'>
+
+	<title>Tech Syndicate | Platform </title>
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <ul class="navbar">
+        <li>
+            <a href="/leaderboard">
+                Leaderboard
+            </a>
+        </li>
+        <%if (userInfo) { %>
+            <li>
+                <a href="/dashboard">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard/userProfile">
+                    <%=userInfo.name%>
+                </a>
+            </li>
+        <% } else { %> 
+            <li>
+                <a href="/login">
+                        Login
+                </a>
+            </li>
+        <% } %> 
+    </ul>
+    <%- body %> 
+</body>
+</html>

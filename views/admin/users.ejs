@@ -1,24 +1,32 @@
-<h2>Users List</h2>
-<br>
-<% for( let i = 0; i < users.length; i++ ) { %>
-<p><%= users[i].email %></p>
-<p><%= users[i].name %></p>
-<p><%= users[i].points %></p>
-<P>Banned: <%= users[i].isBanned %> </P>
-<br>
-<h5>Tasks:</h5>
-<% for( let j = 0; j < users[i].tasks.length; j++ ) { %>
-<a href="/task/<%= users[i].tasks[j] %>"> Task <%= j+1 %> </a>
+<div class="admin-users-display">
+    <h2>Users List</h2>
+    <div class="user-div">
+        <% for( let i = 0; i < users.length; i++ ) { %>
+            <div class="user-card">
+                <p><span>User name : </span><%= users[i].name %></p>
+                <p><span>User email : </span><%= users[i].email %></p>
+                <p><span>User role : </span><%= users[i].role %></p>
+                <p><span>User points : </span><%= users[i].points %></p>
+                <p><span>Banned : </span><%=users[i].isBanned%></p>
+                <div class="task-display">
+                    <p> <span>User tasks : </span> </p>
+                    <% for( let j = 0; j < users[i].tasks.length; j++ ) { %>
+                        <a href="/task/<%= users[i].tasks[j] %>"> Task <%= j+1 %> </a>
+                    <% } %>
+                </div>
+                <div class="admin-control">
+                    <form action="/admin/users/ban" method="post">
+                        <input name="userId" value="<%= users[i].id %>" type="hidden">
+                        <button type="submit">Ban</button>
+                    </form>
+                    <form action="/admin/users/dataClear" method="post">
+                        <input name="userId" value="<%= users[i].id %>" type="hidden">
+                        <button type="submit">Clear Data</button>
+                    </form>
+                </div>
+            </div>
+        <% } %>
+    </div>
+  
+</div>
 
-<% } %>
-<form action="/admin/users/ban" method="post">
-    <input name="userId" value="<%= users[i].id %>" type="hidden">
-    <button type="submit">Ban</button>
-</form>
-<form action="/admin/users/dataClear" method="post">
-    <input name="userId" value="<%= users[i].id %>" type="hidden">
-    <button type="submit">Clear Data</button>
-</form>
-<hr>
-<br>
-<% } %>

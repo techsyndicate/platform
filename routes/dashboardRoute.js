@@ -11,6 +11,7 @@ router.get('/',authenticateToken, banCheck, async (req,res)=> {
         const user = await User.findById(userId)
         const userTasks = user.tasks 
         const openTasks = []
+        const userInfo = req.user
         const closedTasks = []
         const submittedTasks = []
         const reviewedTasks = []
@@ -39,7 +40,7 @@ router.get('/',authenticateToken, banCheck, async (req,res)=> {
             
             }
         }
-        res.render('dashboard', {openTasks, closedTasks, submittedTasks, reviewedTasks})
+        res.render('dashboard', {openTasks, closedTasks, submittedTasks, reviewedTasks, userInfo})
     } catch (error) {
         console.log(error)
         res.render('error')
@@ -56,7 +57,7 @@ router.get('/userProfile', authenticateToken, banCheck,async (req,res)=>{
     const task = await Task.findById(taskId)
     tasks.push(task)
  }
-    res.render('userProfile', {user, tasks})
+    res.render('userProfile', {user, tasks,userInfo:user})
 
 })
 

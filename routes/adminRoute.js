@@ -7,11 +7,11 @@ const Log = require('../models/logModel')
 
 router.get('/',authenticateToken, isAdmin, banCheck, async (req, res) => {
     const tasks = await Task.find({});
-    res.render('admin/index', {tasks})
+    res.render('admin/index', {tasks,userInfo:req.user});
 })
 router.get('/task', authenticateToken, isAdmin, (req, res) => {
 
-    res.render('admin/task')
+    res.render('admin/task',{userInfo:req.user});
 })
 
 router.post('/task', authenticateToken, isAdmin,banCheck, (req, res) => {
@@ -37,7 +37,7 @@ router.post('/review', authenticateToken, isAdmin,banCheck,  async (req,res)=> {
     try {
         const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment, points, isReviewed:true}})
     const user = await User.findOneAndUpdate({email:userEmail}, {$inc:{points:points}})
-    res.render('admin/reviewSuccess', {submission})    
+    res.render('admin/reviewSuccess', {submission,userInfo:req.user})    
     } catch (err) {
         console.log(err)
         res.render('error')
@@ -50,7 +50,7 @@ router.get('/users', authenticateToken, isAdmin,banCheck, async (req,res)=> {
     // TODO: uncheck this comment for final prod
     // const users = await User.find({isAdmin:false});
     const users = await User.find({});
-    res.render('admin/users', {users})
+    res.render('admin/users', {users,userInfo:req.user})
 
 })
 
