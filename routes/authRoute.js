@@ -7,8 +7,8 @@ const Task = require('../models/taskModel');
 
 router.get('/login', (req, res) => {
     console.log('login')
-    const client_id = process.env.MS_CLIENT_ID 
-    const endpoint = process.env.MS_ENDPOINT 
+    const client_id = process.env.MS_CLIENT_ID
+    const endpoint = process.env.MS_ENDPOINT
     // ms read user profile scope
     const scope = 'user.read'
     const redirect_uri = process.env.MS_REDIRECT_URI
@@ -22,8 +22,8 @@ router.get("/callback", (req, res) => {
     const code = req.query.code
     const client_id = process.env.MS_CLIENT_ID
     const client_secret = process.env.MS_CLIENT_SECRET
-    const endpoint = process.env.MS_ENDPOINT_TOKEN 
-    const redirect_uri = process.env.MS_REDIRECT_URI 
+    const endpoint = process.env.MS_ENDPOINT_TOKEN
+    const redirect_uri = process.env.MS_REDIRECT_URI
     const grant_type = 'authorization_code'
     const creds = {
         grant_type: grant_type,
@@ -42,62 +42,62 @@ router.get("/callback", (req, res) => {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }
-    
+
     axios.post(endpoint, params, config)
         .then(response => {
             const token = response.data.access_token
-            
+
             const configr = {
                 headers: {
                     'Authorization': `Bearer ${token}`
+                }
             }
-            }
-            axios.post('https://graph.microsoft.com/oidc/userinfo', null, configr).then(resp=> {
+            axios.post('https://graph.microsoft.com/oidc/userinfo', null, configr).then(resp => {
                 // check if email is a valid email
-                
+
                 if (resp.data.email.includes('amity.edu')) {
 
-                User.findOne({email:resp.data.email}).then(user=> {
-                    if (user) {
-                        jwt.sign({email:resp.data.email}, process.env.SECRET, (err, token)=> {
-                            if (err) throw err 
-                            res.cookie('token', token)
-                            res.redirect('/dashboard')
-                        })
-                    } else {
-                        const newUser = new User({
-                            name:resp.data.name,
-                            email:resp.data.email,
-                        })
-                        newUser.save().then(result=> {
-                            jwt.sign({email:resp.data.email}, process.env.SECRET, (err, token)=> {
-                                if (err) throw err 
+                    User.findOne({ email: resp.data.email }).then(user => {
+                        if (user) {
+                            jwt.sign({ email: resp.data.email }, process.env.SECRET, (err, token) => {
+                                if (err) throw err
                                 res.cookie('token', token)
                                 res.redirect('/dashboard')
                             })
-                        }).catch(error=> {
-                         console.log(error)
-                         res.render('error')   
-                        })
-                    } 
-            })
-        } else {
-            res.render('error')
-        }
-        }).catch
-        (error => {
-            console.log(error)
+                        } else {
+                            const newUser = new User({
+                                name: resp.data.name,
+                                email: resp.data.email,
+                            })
+                            newUser.save().then(result => {
+                                jwt.sign({ email: resp.data.email }, process.env.SECRET, (err, token) => {
+                                    if (err) throw err
+                                    res.cookie('token', token)
+                                    res.redirect('/dashboard')
+                                })
+                            }).catch(error => {
+                                console.log(error)
+                                res.render('error')
+                            })
+                        }
+                    })
+                } else {
+                    res.render('error')
+                }
+            }).catch
+                (error => {
+                    console.log(error)
+                    res.render('error')
+                }
+                )
+
+
+
+        }).catch(err => {
+            console.log(err)
             res.render('error')
         }
         )
-        
-    
-
-    }).catch(err => {
-        console.log(err)
-        res.render('error')
-    }
-    )
 })
 
 router.get('/logout', (req, res) => {

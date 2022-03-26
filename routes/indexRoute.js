@@ -2,15 +2,15 @@ const router = require('express').Router();
 const User = require('../models/userModel');
 
 router.get('/', (req, res) => {
-    res.render('index',{userInfo: req.user})
+    res.render('index', { userInfo: req.user })
 })
-router.get('/leaderboard', async (req,res)=> {
-const users = await User.find({isBanned:false, isAdmin:false}).sort({points:-1})
-if (req.user) {
-    const user = req.user 
-    const rank = users.indexOf(user) + 1
-    res.render('leaderboard', {users, rank, user})
-}
-res.render('leaderboard', {users,userInfo:req.user})
+router.get('/leaderboard', async (req, res) => {
+    const users = await User.find({ isBanned: false, isAdmin: false }).sort({ points: -1 })
+    if (req.user) {
+        const user = req.user
+        const rank = users.indexOf(user) + 1
+        res.render('leaderboard', { users, rank, user })
+    }
+    res.render('leaderboard', { users, userInfo: req.user })
 })
 module.exports = router;
