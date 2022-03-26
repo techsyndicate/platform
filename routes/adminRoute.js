@@ -33,9 +33,9 @@ router.post('/task', authenticateToken, isAdmin,banCheck, (req, res) => {
 })
 
 router.post('/review', authenticateToken, isAdmin,banCheck,  async (req,res)=> {
-    const { taskId, reviewComment, points, userEmail } = req.body;
+    const { taskId, comment, points, userEmail } = req.body;
     try {
-        const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment, points, isReviewed:true}})
+        const submission = await Submission.findOneAndUpdate({taskId, userEmail}, {$set:{reviewComment:comment, points, isReviewed:true}})
     const user = await User.findOneAndUpdate({email:userEmail}, {$inc:{points:points}})
     res.render('admin/reviewSuccess', {submission,userInfo:req.user})    
     } catch (err) {

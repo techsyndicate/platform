@@ -11,7 +11,7 @@
 </p>
 
 <% if (ifSubmitted) { %>
-<% if (task.isReviewed) { %>
+<% if (ifReviewed) { %>
 <h2> The Task has been reviewed</h2>
 <%= task.link%>
 <%= task.points %>
@@ -34,7 +34,7 @@ You: <%= userMessages[i].comment %> <br>
     <input name="taskId" value="<%= task.id %>" type="hidden">
     <input name="userEmail" value="<%= user.email %>" type="hidden">
     <input name="comment" type="text" placeholder="Message" required autocomplete="off"> <br>
-    <button type="submit">Submit Review</button>
+    <button type="submit">Send</button>
 </form>
 <% } %>
 <% } %>

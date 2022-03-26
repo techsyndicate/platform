@@ -10,6 +10,8 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
     const user = req.user
     var ifDue = false
     var ifSubmitted = false
+    var ifReviewed = false
+    var reviewComment = ""
     const task = await Task.findById(taskId)
     if (!task) {
         res.render('404')
@@ -24,7 +26,11 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
             const submission = await Submission.findById(task.submissions[i])
             ifSubmitted = submission.userEmail === user.email ? true : false;
                 if (ifSubmitted) {
-                    break 
+                    ifReviewed = submission.isReviewed ? true : false;
+                    if (ifReviewed) {
+                        reviewComment = submission.reviewComment
+                    }
+                    break
                 }
         }
     }
@@ -39,7 +45,7 @@ router.get('/:taskId', authenticateToken, banCheck,  async(req,res)=> {
         }
     }
     
-    res.render('task', {task, user, ifDue, ifSubmitted, submissions, messages, userMessages,userInfo:req.user})
+    res.render('task', {task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, reviewComment,userInfo:req.user})
     } catch (error) {
         console.log(error)
         res.render('error')
