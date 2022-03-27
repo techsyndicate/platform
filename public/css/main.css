@@ -283,3 +283,66 @@ body{
 .admin-users-display .user-card p span{
   color: #16e16e;
 }
+/*dashboard*/
+.dashboard .dash{
+  position: absolute;
+  margin: 1.5% 7.5%;
+}
+.dashboard .dash h2{
+  color: #16e16e;
+  font-size: 3.5vw;
+  letter-spacing: 2.5px;
+}
+.dashboard .dash p {
+  color: #eee;
+  font-size: 1.35vw;
+  margin-top:-7.5%;
+}
+.dashboard .tasks-display-div .task-control{
+  display: flex;
+  width: 100vh;
+  position: absolute;
+  margin: 12.5% 7.5%;
+}
+.dashboard .tasks-display-div .task-control button{
+  background: #191919;
+  color: #eee;
+  font-size: 1.2vw;
+  font-family: 'Sofia Pro', sans-serif;
+  border:none;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all .5s ease;
+  margin-right: 2.5%;
+  padding: 10px;
+  cursor: pointer;
+}
+.dashboard .tasks-display-div .task-control button:hover{
+  color: #16e16e;
+  transform: translateY(-5px);
+}
+.dashboard .tasks-display-div .tasks-display {
+  position: absolute;
+  margin: 17.5% 7.5%;
+}
+.dashboard .tasks-display-div .tasks-display .task-card{
+  width: 55vh;
+  background: #191919;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  transition: all .5s ease;
+}
+.dashboard .tasks-display-div .tasks-display a{
+  text-decoration: none;
+}
+.dashboard .tasks-display-div .tasks-display .task-card p span {
+  color: #16e16e;
+}
+.dashboard .tasks-display-div .tasks-display .task-card:hover{
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 0 10px #111;
+}
+#closed,#submit,#review{
+  display:none;
+}
