@@ -18,8 +18,9 @@ router.get('/', authenticateToken, banCheck, async (req, res) => {
         const allTasks = await Task.find({})
 
         for (var i = 0; i < userTasks.length; i++) {
-            var task = await Task.findById(userTasks[i])
-            const submission = await Submission.findOne({ taskId: task.id, userEmail: user.email })
+            let task = await Task.findById(userTasks[i])
+            let submissionId = task.submissions[0]
+            let submission = await Submission.findById(submissionId)
             if (submission.isReviewed) {
                 reviewedTasks.push(task)
             } else {

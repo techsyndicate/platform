@@ -13,11 +13,7 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
     }, 
-    comments: { 
-        type: Array, 
-        required: true,
-        default: []
-    }, 
+    
     points: {
         type: Number,
         required:true, 
@@ -28,12 +24,7 @@ const taskSchema = new mongoose.Schema({
         required: true,
         default: false
     },
-    notes: {
-        type: String,
-        required: true,
-        default: ""
-    },
-    reviewComment: {
+    comment: {
         type: String,
     
     }

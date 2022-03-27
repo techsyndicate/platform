@@ -1,4 +1,3 @@
-
 <h2>Task</h2>
 
 <!-- check if submitted and if due -->
@@ -14,8 +13,8 @@
 <% if (ifReviewed) { %>
 <h2> The Task has been reviewed</h2>
 <%= task.link%>
-<%= task.points %>
-<%= reviewComment %>
+<%= points %>/<%= task.points %>
+<%= comment %>
 
 <% } else { %>
 <h2> This task has been submitted but not yet reviewed by Admin</h2>
@@ -75,7 +74,7 @@ You: <%= userMessages[i].comment %> <br>
         <input name="taskId" value="<%= task.id %>" type="hidden">
         <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
         <input name="points" type="number" placeholder="Points" required autocomplete="off"> <br><br>
-        <input name=" comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
+        <input name="comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
         <button type="submit">Review</button>
     </form>
     <h2>Chat</h2>
@@ -83,7 +82,7 @@ You: <%= userMessages[i].comment %> <br>
         <input name="taskId" value="<%= task.id %>" type="hidden">
         <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
         <input name="comment" type="text" placeholder="Message" required autocomplete="off"> <br>
-        <button type="submit">Submit Review</button>
+        <button type="submit">Send</button>
     </form>
     <h2> Past Messages </h2>
     <!-- loop through messages from this user -->
