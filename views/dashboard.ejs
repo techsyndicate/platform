@@ -40,7 +40,7 @@
             <% if (closedTasks.length == 0) {%>
             <p>No closed tasks</p>
             <%} else {%>
-            <%for (var i = 0; i>closedTasks.length; i++) {%>
+            <%for (var i = 0; i<closedTasks.length; i++) {%>
             <a href="/task/<%=closedTasks[i].id%>">
                 <div class="task-card">
                     <p><span>Name : </span><%=closedTasks[i].name%></p>
@@ -58,7 +58,7 @@
             <% if (reviewedTasks.length  == 0){ %>
             <p>No tasks reviewed</p>
             <% } else { %>
-            <%for (var i = 0; i>reviewedTasks.length; i++) {%>
+            <%for (var i = 0; i<reviewedTasks.length; i++) {%>
             <a href="/task/<%=reviewedTasks[i].id%>">
                 <div class="task-card">
                     <p><span>Name : </span><%=reviewedTasks[i].name%></p>
@@ -76,7 +76,7 @@
             <% if (submittedTasks.length == 0) {%>
             <p>No tasks submitted</p>
             <% } else { %>
-            <%for (var i = 0; i>submittedTasks.length; i++) {%>
+            <%for (var i = 0; i<submittedTasks.length; i++) {%>
             <a href="/task/<%=submittedTasks[i].id%>">
                 <div class="task-card">
                     <p><span>Name : </span><%=submittedTasks[i].name%></p>
