@@ -6,7 +6,6 @@ const Task = require('../models/taskModel');
 
 
 router.get('/login', (req, res) => {
-    console.log('login')
     const client_id = process.env.MS_CLIENT_ID
     const endpoint = process.env.MS_ENDPOINT
     // ms read user profile scope
@@ -18,7 +17,6 @@ router.get('/login', (req, res) => {
 })
 
 router.get("/callback", (req, res) => {
-    console.log('callback')
     const code = req.query.code
     const client_id = process.env.MS_CLIENT_ID
     const client_secret = process.env.MS_CLIENT_SECRET

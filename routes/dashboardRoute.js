@@ -41,6 +41,7 @@ router.get('/', authenticateToken, banCheck, async (req, res) => {
 
             }
         }
+
         res.render('dashboard', { openTasks, closedTasks, submittedTasks, reviewedTasks, userInfo })
     } catch (error) {
         console.log(error)
@@ -48,6 +49,7 @@ router.get('/', authenticateToken, banCheck, async (req, res) => {
     }
 
 })
+
 router.get('/userProfile', authenticateToken, banCheck, async (req, res) => {
     const user = req.user
     const userId = req.user.id

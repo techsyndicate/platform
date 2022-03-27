@@ -6,7 +6,7 @@
     <div class="tasks-display-div">
         <div class="task-control">
             <button>
-                Closed 
+                Closed
             </button>
             <button>
                 Open
@@ -19,108 +19,108 @@
             </button>
         </div>
         <div class="tasks-display" id="open">
-            <% if openTasks.length == 0 { %>
-                <p>No open tasks</p>
+            <% if (openTasks.length == 0) { %>
+            <p>No open tasks</p>
             <% } else { %>
-                <%for (var i = 0; i>openTasks.length; i++) {%>
-                    <a href="/task/<%=openTasks[i].id%>">
-                        <div class="task-card">
-                            <p><span>Name : </span><%=openTasks[i].name%></p>
-                            <p><span>Points : </span><%=openTasks[i].points%></p>
-                            <p><span>Due Date : </span><%=openTasks[i].dueDate%></p>
-                            <p><span>Description : </span> <br>
-                                <%=openTasks[i].description%>
-                            </p>
-                        </div>
-                    </a>
-                <%}%>
+            <%for (var i = 0; i < openTasks.length; i++) {%>
+            <a href="/task/<%=openTasks[i].id%>">
+                <div class="task-card">
+                    <p><span>Name : </span><%=openTasks[i].name%></p>
+                    <p><span>Points : </span><%=openTasks[i].points%></p>
+                    <p><span>Due Date : </span><%=openTasks[i].dueDate%></p>
+                    <p><span>Description : </span> <br>
+                        <%=openTasks[i].description%>
+                    </p>
+                </div>
+            </a>
+            <%}%>
             <%}%>
         </div>
         <div class="tasks-display" id="closed">
-            <% if closedTasks.length == 0 {%>
-                <p>No closed tasks</p>
+            <% if (closedTasks.length == 0) {%>
+            <p>No closed tasks</p>
             <%} else {%>
-                <%for (var i = 0; i>closedTasks.length; i++) {%>
-                    <a href="/task/<%=closedTasks[i].id%>">
-                        <div class="task-card">
-                            <p><span>Name : </span><%=closedTasks[i].name%></p>
-                            <p><span>Points : </span><%=closedTasks[i].points%></p>
-                            <p><span>Due Date : </span><%=closedTasks[i].dueDate%></p>
-                            <p><span>Description : </span> <br>
-                                <%=closedTasks[i].description%>
-                            </p>
-                        </div>
-                    </a>
-                <%}%>
+            <%for (var i = 0; i>closedTasks.length; i++) {%>
+            <a href="/task/<%=closedTasks[i].id%>">
+                <div class="task-card">
+                    <p><span>Name : </span><%=closedTasks[i].name%></p>
+                    <p><span>Points : </span><%=closedTasks[i].points%></p>
+                    <p><span>Due Date : </span><%=closedTasks[i].dueDate%></p>
+                    <p><span>Description : </span> <br>
+                        <%=closedTasks[i].description%>
+                    </p>
+                </div>
+            </a>
+            <%}%>
             <%}%>
         </div>
         <div class="tasks-display" id="review">
-            <% if reviewedTasks.length  == 0{ %>
-                <p>No tasks reviewed</p>
+            <% if (reviewedTasks.length  == 0){ %>
+            <p>No tasks reviewed</p>
             <% } else { %>
-                <%for (var i = 0; i>reviewedTasks.length; i++) {%>
-                    <a href="/task/<%=reviewedTasks[i].id%>">
-                        <div class="task-card">
-                            <p><span>Name : </span><%=reviewedTasks[i].name%></p>
-                            <p><span>Points : </span><%=reviewedTasks[i].points%></p>
-                            <p><span>Due Date : </span><%=reviewedTasks[i].dueDate%></p>
-                            <p><span>Description : </span> <br>
-                                <%=reviewedTasks[i].description%>
-                            </p>
-                        </div>
-                    </a>
-                <%}%>
+            <%for (var i = 0; i>reviewedTasks.length; i++) {%>
+            <a href="/task/<%=reviewedTasks[i].id%>">
+                <div class="task-card">
+                    <p><span>Name : </span><%=reviewedTasks[i].name%></p>
+                    <p><span>Points : </span><%=reviewedTasks[i].points%></p>
+                    <p><span>Due Date : </span><%=reviewedTasks[i].dueDate%></p>
+                    <p><span>Description : </span> <br>
+                        <%=reviewedTasks[i].description%>
+                    </p>
+                </div>
+            </a>
+            <%}%>
             <%}%>
         </div>
         <div class="tasks-display" id="submit">
             <% if (submittedTasks.length == 0) {%>
-                <p>No tasks submitted</p>
+            <p>No tasks submitted</p>
             <% } else { %>
-                <%for (var i = 0; i>submittedTasks.length; i++) {%>
-                    <a href="/task/<%=submittedTasks[i].id%>">
-                        <div class="task-card">
-                            <p><span>Name : </span><%=submittedTasks[i].name%></p>
-                            <p><span>Points : </span><%=submittedTasks[i].points%></p>
-                            <p><span>Due Date : </span><%=submittedTasks[i].dueDate%></p>
-                            <p><span>Description : </span> <br>
-                                <%=submittedTasks[i].description%>
-                            </p>
-                        </div>
-                    </a>
-                <%}%>
+            <%for (var i = 0; i>submittedTasks.length; i++) {%>
+            <a href="/task/<%=submittedTasks[i].id%>">
+                <div class="task-card">
+                    <p><span>Name : </span><%=submittedTasks[i].name%></p>
+                    <p><span>Points : </span><%=submittedTasks[i].points%></p>
+                    <p><span>Due Date : </span><%=submittedTasks[i].dueDate%></p>
+                    <p><span>Description : </span> <br>
+                        <%=submittedTasks[i].description%>
+                    </p>
+                </div>
+            </a>
+            <%}%>
             <%}%>
         </div>
     </div>
 </div>
 <script>
-    let [closed,opened,reviewed,submitted] = [
+    let [closed, opened, reviewed, submitted] = [
         document.querySelector('#closed'),
         document.querySelector('#open'),
         document.querySelector('#review'),
         document.querySelector('#submit')
     ]
-    closed.addEventListener('click',()=>{
-        opened.style.display='none'
-        reviewed.style.display='none'
-        submitted.style.display="none"
-        closed.style.display="block"
+    closed.addEventListener('click', () => {
+        opened.style.display = 'none'
+        reviewed.style.display = 'none'
+        submitted.style.display = "none"
+        closed.style.display = "block"
     })
-    opened.addEventListener('click',()=>{
-        closed.style.display='none'
-        reviewed.style.display='none'
-        submitted.style.display="none"
-        opened.style.display="block"
+    opened.addEventListener('click', () => {
+        closed.style.display = 'none'
+        reviewed.style.display = 'none'
+        submitted.style.display = "none"
+        opened.style.display = "block"
     })
-    reviewed.addEventListener('click',()=>{
-        closed.style.display='none'
-        opened.style.display='none'
-        submitted.style.display="none"
-        reviewed.style.display="block"
+    reviewed.addEventListener('click', () => {
+        closed.style.display = 'none'
+        opened.style.display = 'none'
+        submitted.style.display = "none"
+        reviewed.style.display = "block"
     })
-    submitted.addEventListener('click',()=>{
-        closed.style.display='none'
-        opened.style.display='none'
-        reviewed.style.display="none"
-        submitted.style.display="block"
+    submitted.addEventListener('click', () => {
+        closed.style.display = 'none'
+        opened.style.display = 'none'
+        reviewed.style.display = "none"
+        submitted.style.display = "block"
     })
 </script>

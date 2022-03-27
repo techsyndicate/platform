@@ -20,7 +20,6 @@ module.exports = {
         }
     },
     isAdmin: function (req, res,next) {
-        console.log(req.user)
         if (req.user.isAdmin) {
             return next()
         } else {
