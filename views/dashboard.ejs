@@ -5,16 +5,16 @@
     </div>
     <div class="tasks-display-div">
         <div class="task-control">
-            <button>
+            <button onclick="closed()">
                 Closed
             </button>
-            <button>
+            <button onclick="opened()">
                 Open
             </button>
-            <button>
+            <button onclick="submitted()">
                 Submitted
             </button>
-            <button>
+            <button onclick="reviewed()">
                 Reviewed
             </button>
         </div>
@@ -36,7 +36,7 @@
             <%}%>
             <%}%>
         </div>
-        <div class="tasks-display" id="closed">
+        <div class="tasks-display" id="close">
             <% if (closedTasks.length == 0) {%>
             <p>No closed tasks</p>
             <%} else {%>
@@ -93,34 +93,32 @@
     </div>
 </div>
 <script>
-    let [closed, opened, reviewed, submitted] = [
-        document.querySelector('#closed'),
-        document.querySelector('#open'),
-        document.querySelector('#review'),
-        document.querySelector('#submit')
-    ]
-    closed.addEventListener('click', () => {
-        opened.style.display = 'none'
-        reviewed.style.display = 'none'
-        submitted.style.display = "none"
-        closed.style.display = "block"
-    })
-    opened.addEventListener('click', () => {
-        closed.style.display = 'none'
-        reviewed.style.display = 'none'
-        submitted.style.display = "none"
-        opened.style.display = "block"
-    })
-    reviewed.addEventListener('click', () => {
-        closed.style.display = 'none'
-        opened.style.display = 'none'
-        submitted.style.display = "none"
-        reviewed.style.display = "block"
-    })
-    submitted.addEventListener('click', () => {
-        closed.style.display = 'none'
-        opened.style.display = 'none'
-        reviewed.style.display = "none"
-        submitted.style.display = "block"
-    })
+    opened();
+    function closed() {
+        document.getElementById('close').style.display = 'block'
+        document.getElementById('open').style.display = 'none'
+        document.getElementById('review').style.display = 'none'
+        document.getElementById('submit').style.display = 'none'
+    }
+
+    function opened() {
+        document.getElementById('close').style.display = 'none'
+        document.getElementById('open').style.display = 'block'
+        document.getElementById('review').style.display = 'none'
+        document.getElementById('submit').style.display = 'none'
+    }
+
+    function reviewed() {
+        document.getElementById('close').style.display = 'none'
+        document.getElementById('open').style.display = 'none'
+        document.getElementById('review').style.display = 'block'
+        document.getElementById('submit').style.display = 'none'
+    }
+
+    function submitted() {
+        document.getElementById('close').style.display = 'none'
+        document.getElementById('open').style.display = 'none'
+        document.getElementById('review').style.display = 'none'
+        document.getElementById('submit').style.display = 'block'
+    }
 </script>
