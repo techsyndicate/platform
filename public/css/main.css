@@ -175,6 +175,7 @@ body{
   padding-bottom: 5px;
   font-family: 'Sofia Pro', sans-serif;
   transition: all .5s ease;
+  color: #eee;
 }
 .task-add-form form input::placeholder{
   color: #eee;

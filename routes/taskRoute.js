@@ -12,7 +12,8 @@ router.get('/:taskId', authenticateToken, banCheck, async (req, res) => {
     var ifDue = false
     var ifSubmitted = false
     var ifReviewed = false
-    var reviewComment = ""
+    var points = 0
+    var comment = ""
     if (!ObjectId.isValid(taskId)) {
         return res.render('404')
     }
@@ -32,7 +33,9 @@ router.get('/:taskId', authenticateToken, banCheck, async (req, res) => {
                 if (ifSubmitted) {
                     ifReviewed = submission.isReviewed ? true : false;
                     if (ifReviewed) {
-                        reviewComment = submission.reviewComment
+                        comment = submission.comment
+                        points = submission.points
+                        console.log(comment)
                     }
                     break
                 }
@@ -49,7 +52,7 @@ router.get('/:taskId', authenticateToken, banCheck, async (req, res) => {
             }
         }
         console.log(req.user)
-        res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, reviewComment, userInfo: req.user })
+        res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points })
     } catch (error) {
         console.log(error)
         res.render('error')
