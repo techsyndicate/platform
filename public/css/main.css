@@ -284,6 +284,42 @@ body{
 .admin-users-display .user-card p span{
   color: #16e16e;
 }
+.admin-control{
+  display: flex;
+  margin-top: 5%;
+}
+.admin-control form{
+  margin-right: 2.5%;
+}
+.task-link{
+  display: flex;
+}
+.task-link a{
+  color: #eee;
+  font-size: 1vw;
+  background: #111;
+  padding: 10px;
+  border-radius: 5px;
+  width: 10vh;
+  margin-right: 2.5%;
+  text-decoration: none;
+  transition: all .5s ease;
+}
+.admin-users-display .user-card button{
+  background: #111;
+  color: #eee;
+  width: 15vh;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1vw;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  transition: all .5s ease;
+  border: none;
+  font-family: 'Sofia Pro', sans-serif;
+  cursor: pointer;
+  margin-left: 5%;
+}
 /*dashboard*/
 .dashboard .dash{
   position: absolute;
@@ -336,6 +372,7 @@ body{
 }
 .dashboard .tasks-display-div .tasks-display a{
   text-decoration: none;
+  color: #eee;
 }
 .dashboard .tasks-display-div .tasks-display .task-card p span {
   color: #16e16e;

@@ -10,9 +10,12 @@
                 <p><span>Banned : </span><%=users[i].isBanned%></p>
                 <div class="task-display">
                     <p> <span>User tasks : </span> </p>
-                    <% for( let j = 0; j < users[i].tasks.length; j++ ) { %>
-                        <a href="/task/<%= users[i].tasks[j] %>"> Task <%= j+1 %> </a>
-                    <% } %>
+                    <div class="task-link">
+                         <% for( let j = 0; j < users[i].tasks.length; j++ ) { %>
+                            <a href="/task/<%= users[i].tasks[j] %>"> Task <%= j+1 %> </a>
+                        <% } %>
+                    </div>
+                   
                 </div>
                 <div class="admin-control">
                     <form action="/admin/users/ban" method="post">
