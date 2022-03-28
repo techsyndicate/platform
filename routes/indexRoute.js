@@ -9,7 +9,7 @@ router.get('/leaderboard', async (req, res) => {
     if (req.user) {
         const user = req.user
         const rank = users.indexOf(user) + 1
-        res.render('leaderboard', { users, rank, user })
+        res.render('leaderboard', { users, rank, user, userInfo: req.user })
     }
     res.render('leaderboard', { users, userInfo: req.user })
 })
