@@ -3,28 +3,35 @@
   src: url('../assets/fonts/sofia-pro.otf');
 }
 
-body{
+body {
   background: #000;
   color: #eee;
   font-family: 'Sofia Pro';
 }
-.navbar{
+
+.navbar {
+  display: flex;
+  width: 90%;
+  justify-content: flex-end;
   list-style: none;
   margin-top: 40px;
-  margin-left: 72.5%;
   position: fixed;
 }
-.navbar li{
+
+.navbar li {
   display: inline-block;
   margin: 0 10px;
 }
+
 .navbar li a {
   color: #eee;
   font-size: 1.25vw;
   text-decoration: none;
   transition: all .5s ease;
+  width: 100%;
 }
-.navbar li a::after{
+
+.navbar li a::after {
   content: '';
   transition: all .5s ease;
   width: 0;
@@ -32,43 +39,51 @@ body{
   height: 2px;
   background: #16e16e;
 }
-.navbar li a:hover::after{
+
+.navbar li a:hover::after {
   width: 115%;
 }
+
 /*landing div*/
-.landing-div img{
+.landing-div img {
   display: block;
   margin: 1.5% auto;
   width: 90vh;
   padding-top: 20px;
 }
-.landing-div h1{
+
+.landing-div h1 {
   position: absolute;
   font-size: 7.5vw;
   letter-spacing: 2px;
   z-index: 10;
   margin: 30% 5%;
 }
-.landing-div h1 span{
+
+.landing-div h1 span {
   color: #16e16e;
   letter-spacing: 2.5px;
 }
+
 /*profile div*/
-.user-profile-div h1{
+.user-profile-div h1 {
   color: #16e16e;
   margin: 5% 7.5%;
   letter-spacing: 2.5px;
   font-size: 3.5vw;
   position: absolute;
 }
+
 .user-info {
   position: absolute;
   margin: 15% 7.5%;
 }
-.user-info span{
+
+.user-info span {
   color: #16e16e;
   font-size: 1.5vw;
 }
+
 .user-profile-div a {
   background: #191919;
   color: #eee;
@@ -84,28 +99,33 @@ body{
   transition: all .5s ease;
   letter-spacing: 2.5px;
 }
-.user-profile-div a:hover{
+
+.user-profile-div a:hover {
   transform: translateY(-10px);
 }
+
 /*admin panel*/
-.admin-panel h1{
+.admin-panel h1 {
   color: #16e16e;
   margin: 5% 7.5%;
   letter-spacing: 2.5px;
   font-size: 3.5vw;
   position: absolute;
 }
-.admin-panel .forms-div{
+
+.admin-panel .forms-div {
   display: flex;
   position: absolute;
   left: 7.5%;
   top: 25%;
   width: 50vh;
 }
-.admin-panel .forms-div form{
+
+.admin-panel .forms-div form {
   margin: 0 5%;
 }
-.admin-panel .forms-div form button{
+
+.admin-panel .forms-div form button {
   background: #191919;
   color: #eee;
   width: 15vh;
@@ -119,19 +139,23 @@ body{
   font-family: 'Sofia Pro', sans-serif;
   cursor: pointer;
 }
-.admin-panel .forms-div form button:hover{
+
+.admin-panel .forms-div form button:hover {
   transform: translateY(-10px);
   color: #16e16e;
 }
-.tasks{
+
+.tasks {
   position: absolute;
   top: 35%;
   left: 7.5%;
 }
-.tasks h2{
+
+.tasks h2 {
   font-size: 2.5vw;
 }
-.task-card{
+
+.task-card {
   background-color: #191919;
   padding: 10px;
   border-radius: 10px;
@@ -141,31 +165,37 @@ body{
   transition: all .5s ease;
   cursor: pointer;
 }
-.task-card:hover{
+
+.task-card:hover {
   transform: translateY(-10px) scale(1.1);
   box-shadow: 0 0 10px #111;
 }
-.task-card p{
+
+.task-card p {
   padding-left: 20px;
 }
-.task-card p span{
+
+.task-card p span {
   color: #16e16e;
 }
+
 /*task add */
-.task-add-form h2{
+.task-add-form h2 {
   color: #16e16e;
   margin: 5% 7.5%;
   letter-spacing: 2.5px;
   font-size: 3.5vw;
   position: absolute;
 }
-.task-add-form form{
+
+.task-add-form form {
   position: absolute;
   left: 10%;
   top: 25%;
   width: 50vh;
 }
-.task-add-form form input{
+
+.task-add-form form input {
   background: transparent;
   border: none;
   border-bottom: 2px solid #eee;
@@ -177,15 +207,18 @@ body{
   transition: all .5s ease;
   color: #eee;
 }
-.task-add-form form input::placeholder{
+
+.task-add-form form input::placeholder {
   color: #eee;
 }
-.task-add-form form input:focus{
+
+.task-add-form form input:focus {
   outline: none;
   width: 50vh;
   border-bottom: 2px solid #16e16e;
 }
-.task-add-form form button{
+
+.task-add-form form button {
   background: #191919;
   color: #eee;
   width: 25vh;
@@ -200,18 +233,21 @@ body{
   cursor: pointer;
   margin-top: 10%;
 }
-#due{
+
+#due {
   color: #eee;
 }
+
 /*leaderboard*/
-.leaderboard-div h1{
+.leaderboard-div h1 {
   color: #16e16e;
   position: absolute;
   margin: 5% 7.5%;
   font-size: 3.5vw;
   letter-spacing: 1.5px;
 }
-.leaderboard-div #search{
+
+.leaderboard-div #search {
   position: absolute;
   margin: 12.5% 7.5%;
   position: absolute;
@@ -225,50 +261,60 @@ body{
   font-family: 'Sofia Pro', sans-serif;
   transition: all .5s ease;
 }
-.leaderboard-div #search::placeholder{
+
+.leaderboard-div #search::placeholder {
   color: #eee;
 }
-.leaderboard-div #search:focus{
+
+.leaderboard-div #search:focus {
   outline: none;
   border-bottom: 2px solid #16e16e;
 }
-.users{
+
+.users {
   position: absolute;
   top: 32.5%;
   left: 8.5%;
 }
-.users table{
+
+.users table {
   border-collapse: collapse;
   width: 150vh;
   text-align: center;
 }
-.users table th{
+
+.users table th {
   background: #16e16e;
   color: #191919;
   padding: 10px;
   font-size: 1.75vw;
 }
-.users table tbody td{
+
+.users table tbody td {
   color: #eee;
   padding: 10px;
   font-size: 1.25vw;
 }
-.users table tbody tr:nth-child(even){
+
+.users table tbody tr:nth-child(even) {
   background-color: #191919;
 }
+
 /*admin users display*/
-.admin-users-display h2{
+.admin-users-display h2 {
   color: #16e16e;
   position: absolute;
   margin: 5% 7.5%;
   font-size: 3.5vw;
   letter-spacing: 2.5px;
 }
-.admin-users-display .user-div{
+
+.admin-users-display .user-div {
   position: absolute;
   margin: 15% 7.5%;
 }
-.admin-users-display .user-card{
+
+.admin-users-display .user-card {
   background: #191919;
   width: 100vh;
   border-radius: 10px;
@@ -277,24 +323,30 @@ body{
   transition: all .5s ease;
   cursor: pointer;
 }
-.admin-users-display .user-card:hover{
+
+.admin-users-display .user-card:hover {
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 0 10px #111;
 }
-.admin-users-display .user-card p span{
+
+.admin-users-display .user-card p span {
   color: #16e16e;
 }
-.admin-control{
+
+.admin-control {
   display: flex;
   margin-top: 5%;
 }
-.admin-control form{
+
+.admin-control form {
   margin-right: 2.5%;
 }
-.task-link{
+
+.task-link {
   display: flex;
 }
-.task-link a{
+
+.task-link a {
   color: #eee;
   font-size: 1vw;
   background: #111;
@@ -305,7 +357,8 @@ body{
   text-decoration: none;
   transition: all .5s ease;
 }
-.admin-users-display .user-card button{
+
+.admin-users-display .user-card button {
   background: #111;
   color: #eee;
   width: 15vh;
@@ -320,33 +373,38 @@ body{
   cursor: pointer;
   margin-left: 5%;
 }
+
 /*dashboard*/
-.dashboard .dash{
+.dashboard .dash {
   position: absolute;
   margin: 1.5% 7.5%;
 }
-.dashboard .dash h2{
+
+.dashboard .dash h2 {
   color: #16e16e;
   font-size: 3.5vw;
   letter-spacing: 2.5px;
 }
+
 .dashboard .dash p {
   color: #eee;
   font-size: 1.35vw;
-  margin-top:-7.5%;
+  margin-top: -7.5%;
 }
-.dashboard .tasks-display-div .task-control{
+
+.dashboard .tasks-display-div .task-control {
   display: flex;
   width: 100vh;
   position: absolute;
   margin: 12.5% 7.5%;
 }
-.dashboard .tasks-display-div .task-control button{
+
+.dashboard .tasks-display-div .task-control button {
   background: #191919;
   color: #eee;
   font-size: 1.2vw;
   font-family: 'Sofia Pro', sans-serif;
-  border:none;
+  border: none;
   border-radius: 5px;
   letter-spacing: 1px;
   transition: all .5s ease;
@@ -354,15 +412,18 @@ body{
   padding: 10px;
   cursor: pointer;
 }
-.dashboard .tasks-display-div .task-control button:hover{
+
+.dashboard .tasks-display-div .task-control button:hover {
   color: #16e16e;
   transform: translateY(-5px);
 }
+
 .dashboard .tasks-display-div .tasks-display {
   position: absolute;
   margin: 17.5% 7.5%;
 }
-.dashboard .tasks-display-div .tasks-display .task-card{
+
+.dashboard .tasks-display-div .tasks-display .task-card {
   width: 55vh;
   background: #191919;
   padding: 10px;
@@ -370,17 +431,21 @@ body{
   margin-bottom: 5%;
   transition: all .5s ease;
 }
-.dashboard .tasks-display-div .tasks-display a{
+
+.dashboard .tasks-display-div .tasks-display a {
   text-decoration: none;
   color: #eee;
 }
+
 .dashboard .tasks-display-div .tasks-display .task-card p span {
   color: #16e16e;
 }
-.dashboard .tasks-display-div .tasks-display .task-card:hover{
+
+.dashboard .tasks-display-div .tasks-display .task-card:hover {
   transform: scale(1.1) translateY(-5px);
   box-shadow: 0 0 10px #111;
 }
-#closed,#submit,#review{
-  display:none;
+
+#closed, #submit, #review {
+  display: none;
 }
