@@ -33,7 +33,6 @@ router.post('/task', isLoggedIn, isAdmin, banCheck, (req, res) => {
 
 router.post('/review', isLoggedIn, isAdmin, banCheck, async (req, res) => {
     const { taskId, comment, points, userEmail } = req.body;
-    console.log(comment)
     try {
         const submission = await Submission.findOneAndUpdate({ taskId, userEmail }, { $set: { comment, points, isReviewed: true } })
         await User.findOneAndUpdate({ email: userEmail }, { $inc: { points: points } })
@@ -59,7 +58,6 @@ router.post('/users/ban', isLoggedIn, isAdmin, banCheck, async (req, res) => {
         console.log(err)
         res.render('error')
     })
-    console.log(user)
     res.render('admin/userSuccess', { user, activity: 'banned' })
 })
 router.post('/users/dataClear', isLoggedIn, isAdmin, banCheck, async (req, res) => {

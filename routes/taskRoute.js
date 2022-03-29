@@ -14,6 +14,8 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
     var ifReviewed = false
     var points = 0
     var comment = ""
+    let description = '';
+
     if (!ObjectId.isValid(taskId)) {
         return res.render('404')
     }
@@ -27,16 +29,15 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
         ifDue = task.dueDate > Date.now() ? true : false;
         if (task.submissions.length > 0) {
             for (var i = 0; i < task.submissions.length; i++) {
-                console.log(task.submissions[i])
                 const submission = await Submission.findById(task.submissions[i])
                 ifSubmitted = submission.userEmail === user.email ? true : false;
                 if (ifSubmitted) {
                     ifReviewed = submission.isReviewed ? true : false;
                     task.link = submission.link;
+                    description = submission.notes;
                     if (ifReviewed) {
                         comment = submission.comment
                         points = submission.points
-                        console.log(comment)
                     }
                     break
                 }
@@ -51,7 +52,7 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
                 userMessages.push(messages[message])
             }
         }        
-        res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points })
+        res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points, description })
     } catch (error) {
         console.log(error)
         res.render('error')

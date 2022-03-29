@@ -449,3 +449,27 @@ body {
 #closed, #submit, #review {
   display: none;
 }
+
+
+/* task Page */
+.task .dash {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5% 7.5%;
+}
+
+.task .dash h2 {
+  color: #16e16e;
+  font-size: 3.5vw;
+  letter-spacing: 2.5px;
+}
+
+.task .details {
+  margin-left: 7.5%;
+}
+
+.task .admin-dash {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5% 7.5%;
+}

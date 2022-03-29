@@ -2,21 +2,24 @@ const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({
     userEmail: {
-        type: String, 
+        type: String,
         required: true,
+    },
+    notes: {
+        type: String
     },
     taskId: {
         type: String,
         required: true,
-    }, 
+    },
     link: {
         type: String,
         required: true,
-    }, 
-    
+    },
+
     points: {
         type: Number,
-        required:true, 
+        required: true,
         default: 0
     },
     isReviewed: {
@@ -26,9 +29,8 @@ const taskSchema = new mongoose.Schema({
     },
     comment: {
         type: String,
-    
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 const submission = mongoose.model('submission', taskSchema);
 module.exports = submission;
