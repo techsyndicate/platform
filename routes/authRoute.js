@@ -6,6 +6,9 @@ const Task = require('../models/taskModel');
 
 
 router.get('/login', (req, res) => {
+    if (req.user) {
+        return res.redirect('/dashboard')
+    }
     const client_id = process.env.MS_CLIENT_ID
     const endpoint = process.env.MS_ENDPOINT
     // ms read user profile scope
@@ -99,6 +102,9 @@ router.get("/callback", (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
+    if (!req.user) {
+        return res.redirect('/login')
+    }
     res.clearCookie('token')
     res.redirect('/')
 })
