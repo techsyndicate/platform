@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { banCheck } = require('../config/auth');
+const { isLoggedIn, banCheck, isLoggedIn } = require('../config/auth');
 const Task = require('../models/taskModel');
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
 const Log = require('../models/logModel')
 const ObjectId = require('mongoose').Types.ObjectId;
 
-router.get('/:taskId', banCheck, async (req, res) => {
+router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
     const { taskId } = req.params;
     const user = req.user
     var ifDue = false
@@ -60,7 +60,7 @@ router.get('/:taskId', banCheck, async (req, res) => {
 
 })
 
-router.post('/submit', banCheck, async (req, res) => {
+router.post('/submit', isLoggedIn, banCheck, async (req, res) => {
     const { taskId, link, notes, userEmail } = req.body;
     const newSubmission = new Submission({
         taskId,
@@ -95,7 +95,7 @@ router.post('/submit', banCheck, async (req, res) => {
     })
 })
 
-router.post('/chat', banCheck, async (req, res) => {
+router.post('/chat', isLoggedIn, banCheck, async (req, res) => {
     const { taskId, userEmail, comment } = req.body;
     const task = await Task.findByIdAndUpdate(taskId, { $push: { chat: { userEmail, comment, fromAdmin: false } } }).catch(err => {
         console.log(err)

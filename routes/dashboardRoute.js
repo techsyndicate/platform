@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { banCheck } = require('../config/auth')
+const { banCheck, isLoggedIn } = require('../config/auth')
 const Task = require('../models/taskModel')
 const Submission = require('../models/submissionModel')
 const User = require('../models/userModel')
 
 
-router.get('/', banCheck, async (req, res) => {
+router.get('/', isLoggedIn, banCheck, async (req, res) => {
     try {
         const userId = req.user.id
         const user = await User.findById(userId)
@@ -50,7 +50,7 @@ router.get('/', banCheck, async (req, res) => {
 
 })
 
-router.get('/userProfile', banCheck, async (req, res) => {
+router.get('/userProfile', isLoggedIn, banCheck, async (req, res) => {
     const user = req.user
     const userId = req.user.id
     const taskIds = req.user.tasks
