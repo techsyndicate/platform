@@ -36,7 +36,7 @@ router.post('/review', isLoggedIn, isAdmin, banCheck, async (req, res) => {
     console.log(comment)
     try {
         const submission = await Submission.findOneAndUpdate({ taskId, userEmail }, { $set: { comment, points, isReviewed: true } })
-        const user = await User.findOneAndUpdate({ email: userEmail }, { $inc: { points: points } })
+        await User.findOneAndUpdate({ email: userEmail }, { $inc: { points: points } })
         res.render('admin/reviewSuccess', { submission, userInfo: req.user })
     } catch (err) {
         console.log(err)

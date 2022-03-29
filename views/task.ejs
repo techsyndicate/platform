@@ -1,12 +1,12 @@
 <h2>Task</h2>
 
 <!-- check if submitted and if due -->
-<% if (ifDue && !ifSubmitted) { %>
+<% if (ifDue || ifSubmitted) { %>
 <!-- Display details of taks -->
 <p>
-    <%= task.name %>
-    <%= task.description %>
-    <%= task.due %>
+    Name- <%= task.name %><br>
+    Description- <%= task.description %><br>
+    Due- <%= task.dueDate %>
 </p>
 
 <div>
@@ -14,14 +14,10 @@
     <div>
         <% if (ifReviewed) { %>
         <h2> The Task has been reviewed</h2>
-        <%= task.link%>
-        <%= points %>/<%= task.points %>
-        <%= comment %>
-    </div>
-    <div>
-        <% } else { %>
+        <p>Link given:-<%= task.link%></p>
+        </p>Points:-<%= points %>/<%= task.points %></p>
+        <p>Comment By Admin:-<%= comment %></p>
         <div>
-            <h2> This task has been submitted but not yet reviewed by Admin</h2>
             <h3> Admin Chat </h3>
             <!-- loop through userMessages -->
             <% for (var i = 0; i < userMessages.length; i++) { %>
@@ -33,6 +29,25 @@
                 <% } %>
             </div>
             <% } %>
+        </div>
+    </div>
+    <div>
+        <% } else { %>
+        <div>
+            <h2> This task has been submitted but not yet reviewed by Admin</h2>
+            <div>
+                <h3> Admin Chat </h3>
+                <!-- loop through userMessages -->
+                <% for (var i = 0; i < userMessages.length; i++) { %>
+                <div>
+                    <% if (userMessages[i].fromAdmin == true) {  %>
+                    Admin: <%= userMessages[i].comment %> <br>
+                    <% } else { %>
+                    You: <%= userMessages[i].comment %> <br>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
             <% if (userMessages.length > 0) { %>
             <h2>Reply to Admin</h2>
             <form action="/task/chat" method="post">
@@ -61,56 +76,58 @@
 <p>
     <%= task.name %>
     <%= task.description %>
-    <%= task.due %>
+    <%= task.dueDate %>
 </p>
 <% } %>
 
 <!-- Admin View -->
 <% if (user.isAdmin) { %>
-<h3>Admin View</h3>
-<!-- list all submissions -->
-<% if (submissions.length > 0) { %>
-<h4>Submissions</h4>
-<div>
+<div style="border: 6px solid #fff; padding: 5px;">
+    <h3>Admin View</h3>
+    <!-- list all submissions -->
+    <% if (submissions.length > 0) { %>
+    <h4>Submissions</h4>
+    <div>
 
-    <% for (var i = 0; i < submissions.length; i++) { %>
-    <div style="border: 1px solid #fff; padding:5px;">
-        <!-- TODO: Make collabsable with name as heading which opens up further details, add total points field -->
-        Reviewed: <%= submissions[i].isReviewed %> <br>
-        Points: <%= submissions[i].points %> <br>
-        Total Points: <%= task.points %> <br>
-        <li><%= submissions[i].link %> - <%= submissions[i].notes %> <%= submissions[i].userEmail %> </li>
-        <form action="/admin/review" method="post">
-            <input name="taskId" value="<%= task.id %>" type="hidden">
-            <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
-            <input name="points" type="number" placeholder="Points" required autocomplete="off"> <br><br>
-            <input name="comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
-            <button type="submit">Review</button>
-        </form>
-        <h2>Chat</h2>
-        <form action="/admin/chat" method="post">
-            <input name="taskId" value="<%= task.id %>" type="hidden">
-            <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
-            <input name="comment" type="text" placeholder="Message" required autocomplete="off"> <br>
-            <button type="submit">Send</button>
-        </form>
-        <h2> Past Messages </h2>
-        <!-- loop through messages from this user -->
-        <% for (var j = 0; j < messages.length; j++) { %>
-        <script>
-            console.log('<%= messages[j].userEmail %>', '<%=  submissions[i].userEmail %>')
-        </script>
-        <% if (messages[j].userEmail == submissions[i].userEmail) { %>
-        <% if (messages[j].fromAdmin == true) { %>
-        Admin: <%= messages[j].comment %> <br>
-        <% } else { %>
-        User: <%= messages[j].comment %> <br>
-        <% } %>
-        <% } else { %>
-        <% } %>
+        <% for (var i = 0; i < submissions.length; i++) { %>
+        <div style="border: 1px solid #fff; padding:15px; margin:15px;">
+            <!-- TODO: Make collabsable with name as heading which opens up further details, add total points field -->
+            Reviewed: <%= submissions[i].isReviewed %> <br>
+            Points: <%= submissions[i].points %> <br>
+            Total Points: <%= task.points %> <br>
+            <li><%= submissions[i].link %> - <%= submissions[i].notes %> <%= submissions[i].userEmail %> </li>
+            <form action="/admin/review" method="post">
+                <input name="taskId" value="<%= task.id %>" type="hidden">
+                <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
+                <input name="points" type="number" placeholder="Points" required autocomplete="off"> <br><br>
+                <input name="comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
+                <button type="submit">Review</button>
+            </form>
+            <h2>Chat</h2>
+            <form action="/admin/chat" method="post">
+                <input name="taskId" value="<%= task.id %>" type="hidden">
+                <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
+                <input name="comment" type="text" placeholder="Message" required autocomplete="off"> <br>
+                <button type="submit">Send</button>
+            </form>
+            <h2> Past Messages </h2>
+            <!-- loop through messages from this user -->
+            <% for (var j = 0; j < messages.length; j++) { %>
+            <div>
+                <% if (messages[j].userEmail == submissions[i].userEmail) { %>
+                <div>
+                    <% if (messages[j].fromAdmin == true) { %>
+                    Admin: <%= messages[j].comment %> <br>
+                    <% } else { %>
+                    User: <%= messages[j].comment %> <br>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+            <% } %>
+        </div>
         <% } %>
     </div>
     <% } %>
 </div>
-<% } %>
 <% } %>

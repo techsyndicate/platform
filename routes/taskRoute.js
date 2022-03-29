@@ -32,6 +32,7 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
                 ifSubmitted = submission.userEmail === user.email ? true : false;
                 if (ifSubmitted) {
                     ifReviewed = submission.isReviewed ? true : false;
+                    task.link = submission.link;
                     if (ifReviewed) {
                         comment = submission.comment
                         points = submission.points
@@ -49,8 +50,7 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
             if (messages[message].userEmail === user.email) {
                 userMessages.push(messages[message])
             }
-        }
-        console.log(messages, userMessages)
+        }        
         res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points })
     } catch (error) {
         console.log(error)
