@@ -117,7 +117,8 @@
                 <form action="/admin/chat" method="post">
                     <input name="taskId" value="<%= task.id %>" type="hidden">
                     <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
-                    <br>
+                    <input name="comment" type="text" placeholder="Message" required autocomplete="off">
+                    <br><br>
                     <button type="submit">Send</button>
                 </form>
             </div>
