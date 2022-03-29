@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { isLoggedIn, banCheck } = require('../config/auth');
+const { authenticateToken, banCheck } = require('../config/auth');
 const Task = require('../models/taskModel');
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
 const Log = require('../models/logModel')
 const ObjectId = require('mongoose').Types.ObjectId;
 
-router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
+router.get('/:taskId', authenticateToken, banCheck, async (req, res) => {
     const { taskId } = req.params;
     const user = req.user
     var ifDue = false
@@ -60,7 +60,7 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
 
 })
 
-router.post('/submit', isLoggedIn, banCheck, async (req, res) => {
+router.post('/submit', authenticateToken, banCheck, async (req, res) => {
     const { taskId, link, notes, userEmail } = req.body;
 
     const getTask = await Task.findById(taskId)
@@ -96,7 +96,7 @@ router.post('/submit', isLoggedIn, banCheck, async (req, res) => {
     })
 })
 
-router.post('/chat', isLoggedIn, banCheck, async (req, res) => {
+router.post('/chat', authenticateToken, banCheck, async (req, res) => {
     const { taskId, userEmail, comment } = req.body;
     const task = await Task.findByIdAndUpdate(taskId, { $push: { chat: { userEmail, comment, fromAdmin: false } } }).catch(err => {
         console.log(err)

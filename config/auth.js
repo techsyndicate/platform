@@ -18,12 +18,6 @@ module.exports = {
             })
         }
     },
-    isLoggedIn: function (req, res, next) {
-        if (req.user) {
-            return next()
-        }
-        res.redirect('/login')
-    },
     isAdmin: function (req, res,next) {
         if (req.user.isAdmin) {
             return next()
