@@ -495,6 +495,7 @@ body {
 
 .task button {
   background: #111;
+  width: 20vh;
   color: #eee;
   font-family: 'Sofia Pro', sans-serif;
   padding: 10px;
@@ -522,8 +523,13 @@ input {
 }
 
 .chatbox {
-  border: 2px solid #16e16e;
   width: max-content;
   padding: 1.5vw;
-  border-radius: 10px;
+  border-radius: 5px;
+  background-color: #191919;
+}
+
+.details a,
+.admin-dash a {
+  color: #fff;
 }
