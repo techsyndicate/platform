@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
-
+const boolReqDefFalse = { type: Boolean, required: true, default: false };
+const stringReq = { type: String, required: true };
 const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
+    name: stringReq,
+    email: stringReq,
     tasks: {
         type: Array,
         required:true,
@@ -19,16 +14,8 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    isAdmin: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    isBanned: {
-        type: Boolean,
-        required: true,
-        default: false
-    }
+    isAdmin: boolReqDefFalse,
+    isBanned: boolReqDefFalse
     
 });
 

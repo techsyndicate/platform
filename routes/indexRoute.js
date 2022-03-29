@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 router.get('/', (req, res) => {
     res.render('index', { userInfo: req.user })
 })
+
 router.get('/leaderboard', async (req, res) => {
     const users = await User.find({ isBanned: false, isAdmin: false }).sort({ points: -1 })
     if (req.user) {
@@ -13,4 +14,5 @@ router.get('/leaderboard', async (req, res) => {
     }
     res.render('leaderboard', { users })
 })
+
 module.exports = router;

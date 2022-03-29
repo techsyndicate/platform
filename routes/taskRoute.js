@@ -62,13 +62,16 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
 
 router.post('/submit', isLoggedIn, banCheck, async (req, res) => {
     const { taskId, link, notes, userEmail } = req.body;
+
+    const getTask = await Task.findById(taskId)
+
     const newSubmission = new Submission({
         taskId,
         link,
         notes,
         userEmail,
     })
-    const getTask = await Task.findById(taskId)
+
     const newLog = new Log({
         user: req.user,
         task: getTask,
@@ -87,9 +90,7 @@ router.post('/submit', isLoggedIn, banCheck, async (req, res) => {
             console.log(error)
             res.render('error')
         })
-
-    }
-    ).catch(error => {
+    }).catch(error => {
         console.log(error)
         res.render('error')
     })
