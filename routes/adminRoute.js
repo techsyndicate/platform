@@ -1,20 +1,20 @@
-const { isAdmin, authenticateToken, banCheck } = require('../config/auth');
+const { isAdmin, banCheck } = require('../config/auth');
 const Task = require('../models/taskModel');
 const router = require('express').Router();
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
 const Log = require('../models/logModel')
 
-router.get('/', authenticateToken, isAdmin, banCheck, async (req, res) => {
+router.get('/', isAdmin, banCheck, async (req, res) => {
     const tasks = await Task.find({});
     res.render('admin/index', { tasks, userInfo: req.user });
 })
-router.get('/task', authenticateToken, isAdmin, (req, res) => {
+router.get('/task', isAdmin, (req, res) => {
 
     res.render('admin/task', { userInfo: req.user });
 })
 
-router.post('/task', authenticateToken, isAdmin, banCheck, (req, res) => {
+router.post('/task', isAdmin, banCheck, (req, res) => {
     const { name, description, points, category, dueDate } = req.body;
     const task = new Task({
         name,
@@ -32,7 +32,7 @@ router.post('/task', authenticateToken, isAdmin, banCheck, (req, res) => {
     })
 })
 
-router.post('/review', authenticateToken, isAdmin, banCheck, async (req, res) => {
+router.post('/review', isAdmin, banCheck, async (req, res) => {
     const { taskId, comment, points, userEmail } = req.body;
     console.log(comment)
     try {
@@ -46,7 +46,7 @@ router.post('/review', authenticateToken, isAdmin, banCheck, async (req, res) =>
 
 })
 
-router.get('/users', authenticateToken, isAdmin, banCheck, async (req, res) => {
+router.get('/users', isAdmin, banCheck, async (req, res) => {
     // TODO: uncheck this comment for final prod
     // const users = await User.find({isAdmin:false});
     const users = await User.find({});
@@ -54,7 +54,7 @@ router.get('/users', authenticateToken, isAdmin, banCheck, async (req, res) => {
 
 })
 
-router.post('/users/ban', authenticateToken, isAdmin, banCheck, async (req, res) => {
+router.post('/users/ban', isAdmin, banCheck, async (req, res) => {
     const { userId } = req.body;
     const user = await User.findByIdAndUpdate(userId, { $set: { isBanned: true } }).catch(err => {
         console.log(err)
@@ -63,7 +63,7 @@ router.post('/users/ban', authenticateToken, isAdmin, banCheck, async (req, res)
     console.log(user)
     res.render('admin/userSuccess', { user, activity: 'banned' })
 })
-router.post('/users/dataClear', authenticateToken, isAdmin, banCheck, async (req, res) => {
+router.post('/users/dataClear', isAdmin, banCheck, async (req, res) => {
     const { userId } = req.body;
     const user = await User.findByIdAndUpdate(userId, { $set: { tasks: [], points: 0, isBanned: false } }).catch(err => {
         console.log(err)
@@ -71,7 +71,7 @@ router.post('/users/dataClear', authenticateToken, isAdmin, banCheck, async (req
     })
     res.render('admin/userSuccess', { user, activity: 'data cleared' })
 })
-router.post('/chat', authenticateToken, isAdmin, banCheck, async (req, res) => {
+router.post('/chat', isAdmin, banCheck, async (req, res) => {
     const { taskId, userEmail, comment } = req.body;
     const task = await Task.findByIdAndUpdate(taskId, { $push: { chat: { userEmail, comment, fromAdmin: true } } }).catch(err => {
         console.log(err)
@@ -93,7 +93,7 @@ router.post('/chat', authenticateToken, isAdmin, banCheck, async (req, res) => {
 
 })
 
-router.get('/log', authenticateToken, banCheck, isAdmin, async (req, res) => {
+router.get('/log', banCheck, isAdmin, async (req, res) => {
     const logs = await Log.find({}).sort({ date: -1 })
     console.log(logs)
     res.render('admin/log', { logs })

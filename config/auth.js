@@ -5,17 +5,16 @@ module.exports = {
         const token = req.cookies.token
         if (!token) {
             // token is not there
-            return res.redirect('/login')
+            return next()
         } else {
             jwt.verify(token, process.env.SECRET, async (err, user)=> {
                 // token is there but not valid
-                if (err) return res.redirect('/login')
+                if (err) return next()
             
                 User.findOne({email: user.email}).then(user=> {
                     req.user = user
-                    return  next()
+                    return next()
                 })
-                // return  next()
             })
         }
     },
