@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { isLoggedIn, banCheck, isLoggedIn } = require('../config/auth');
+const { isLoggedIn, banCheck } = require('../config/auth');
 const Task = require('../models/taskModel');
 const Submission = require('../models/submissionModel');
 const User = require('../models/userModel');
