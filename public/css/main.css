@@ -195,7 +195,7 @@ body {
   width: 50vh;
 }
 
-.task-add-form form input {
+.task-add-form form input, .task-add-form form textarea {
   background: transparent;
   border: none;
   border-bottom: 2px solid #eee;
@@ -208,11 +208,11 @@ body {
   color: #eee;
 }
 
-.task-add-form form input::placeholder {
+.task-add-form form input::placeholder, .task-add-form form textarea::placeholder {
   color: #eee;
 }
 
-.task-add-form form input:focus {
+.task-add-form form input:focus, .task-add-form form textarea:focus {
   outline: none;
   width: 50vh;
   border-bottom: 2px solid #16e16e;

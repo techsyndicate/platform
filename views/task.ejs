@@ -6,9 +6,9 @@
         <h3 style="color: red;">The task is past due</h3>
         <% } %>
         <!-- Display details of taks -->
-        <p>
+        <p style="word-wrap: break-word; white-space: pre-line;">
             <span>Name:</span> <%= task.name %><br>
-            <span>Description:</span> <%= task.description %><br>
+            <span>Description:</span> <%- task.description %><br>
             <span>Due:</span> <%= task.dueDate %><br>
         </p>
     </div>
@@ -73,8 +73,6 @@
         <% } %>
     </div>
 
-    <style>
-    </style>
     <div class="admin-dash">
         <!-- Admin View -->
         <% if (user.isAdmin && submissions.length > 0) { %>
