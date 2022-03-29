@@ -24,7 +24,7 @@ router.post('/task', isLoggedIn, isAdmin, banCheck, (req, res) => {
     })
     task.save().then(task => {
         console.log('Task Added')
-        res.render('admin/taskSuccess', { name, description, dueDate })
+        res.render('admin/taskSuccess', { name, description, dueDate, userInfo: req.user })
     }).catch(err => {
         console.log(err)
         res.render('error')

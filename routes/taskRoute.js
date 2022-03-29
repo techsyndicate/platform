@@ -21,7 +21,7 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
     if (!task) {
         return res.render('404')
     }
-    console.log(task)
+
     // check if task is due and if user has submitted
     try {
         ifDue = task.dueDate > Date.now() ? true : false;
@@ -46,12 +46,11 @@ router.get('/:taskId', isLoggedIn, banCheck, async (req, res) => {
         messages = messages["chat"]
         let userMessages = []
         for (message in messages) {
-
             if (messages[message].userEmail === user.email) {
                 userMessages.push(messages[message])
             }
         }
-        console.log(req.user)
+        console.log(messages, userMessages)
         res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points })
     } catch (error) {
         console.log(error)
