@@ -473,3 +473,37 @@ body {
   flex-direction: column;
   margin: 1.5% 7.5%;
 }
+
+.task input {
+  background: transparent;
+  width: 50vh;
+  border: none;
+  border-bottom: 2px solid #eee;
+  color: #eee;
+  padding: 10px;
+  transition: all 0.5s ease;
+}
+
+.task input::placeholder {
+  color: #eee
+}
+
+.task input:focus {
+  outline: none;
+  border-bottom: 2px solid #16e16e;
+}
+
+.task button {
+  background: #111;
+  color: #eee;
+  font-family: 'Sofia Pro', sans-serif;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+}
+
+.task button:hover {
+  color: #16e16e;
+  transform: translateY(-5px);
+}
