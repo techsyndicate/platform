@@ -507,3 +507,23 @@ body {
   color: #16e16e;
   transform: translateY(-5px);
 }
+
+.task p span {
+  font-size: 1.5rem;
+  color: #16e16e
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  font-family: 'Sofia Pro', sans-serif
+}
+
+.chatbox {
+  border: 2px solid #16e16e;
+  width: max-content;
+  padding: 1.5vw;
+  border-radius: 10px;
+}
