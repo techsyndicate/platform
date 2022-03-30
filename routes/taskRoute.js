@@ -51,8 +51,11 @@ router.get('/:taskId', authenticateToken, banCheck, async (req, res) => {
             if (messages[message].userEmail === user.email) {
                 userMessages.push(messages[message])
             }
-        }        
-        res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points, description })
+        }
+        let dueDate = new Date(task.dueDate)
+        dueDate = dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear()
+        
+        res.render('task', { task, user, ifDue, ifSubmitted, submissions, messages, userMessages, ifReviewed, comment, userInfo: req.user, points, description , dueDate})
     } catch (error) {
         console.log(error)
         res.render('error')

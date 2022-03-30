@@ -18,6 +18,21 @@ module.exports = {
             })
         }
     },
+    checkUser: function(req,res,next) {
+        const token = req.cookies.token 
+        if(token) {
+            jwt.verify(token, process.env.SECRET, async (err, user)=> {
+                if (err) return res.redirect('/login')
+                User.findOne({email: user.email}).then(user=> {
+                    req.user = user
+                    return next()
+                })
+            }
+                )
+        } else {
+
+        }
+    },
     isAdmin: function (req, res,next) {
         if (req.user.isAdmin) {
             return next()

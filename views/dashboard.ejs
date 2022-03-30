@@ -23,11 +23,13 @@
             <p>No open tasks</p>
             <% } else { %>
             <%for (var i = 0; i < openTasks.length; i++) {%>
+            let dueDate = new Date(task.dueDate)
+            dueDate = dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear()
             <a href="/task/<%=openTasks[i].id%>">
                 <div class="task-card">
                     <p><span>Name : </span><%=openTasks[i].name%></p>
                     <p><span>Points : </span><%=openTasks[i].points%></p>
-                    <p><span>Due Date : </span><%=openTasks[i].dueDate%></p>
+                    <p><span>Due Date : </span><%=openTasks[i].dueDate.getDate() %>/<%=openTasks[i].dueDate.getMonth()+1%>/<%=openTasks[i].dueDate.getFullYear()%> </p>
                     <p><span>Description : </span> <br>
                         <%=openTasks[i].description%>
                     </p>
@@ -45,7 +47,7 @@
                 <div class="task-card">
                     <p><span>Name : </span><%=closedTasks[i].name%></p>
                     <p><span>Points : </span><%=closedTasks[i].points%></p>
-                    <p><span>Due Date : </span><%=closedTasks[i].dueDate%></p>
+                    <p><span>Due Date : </span><%=closedTasks[i].dueDate.getDate() %>/<%=closedTasks[i].dueDate.getMonth()+1%>/<%=closedTasks[i].dueDate.getFullYear()%></p>
                     <p><span>Description : </span> <br>
                         <%=closedTasks[i].description%>
                     </p>
@@ -63,7 +65,7 @@
                 <div class="task-card">
                     <p><span>Name : </span><%=reviewedTasks[i].name%></p>
                     <p><span>Points : </span><%=reviewedTasks[i].points%></p>
-                    <p><span>Due Date : </span><%=reviewedTasks[i].dueDate%></p>
+                    <p><span>Due Date : </span><%=reviewedTasks[i].dueDate.getDate() %>/<%=reviewedTasks[i].dueDate.getMonth()+1%>/<%=reviewedTasks[i].dueDate.getFullYear()%></p>
                     <p><span>Description : </span> <br>
                         <%=reviewedTasks[i].description%>
                     </p>
@@ -81,7 +83,7 @@
                 <div class="task-card">
                     <p><span>Name : </span><%=submittedTasks[i].name%></p>
                     <p><span>Points : </span><%=submittedTasks[i].points%></p>
-                    <p><span>Due Date : </span><%=submittedTasks[i].dueDate%></p>
+                    <p><span>Due Date : </span><%=submittedTasks[i].dueDate.getDate() %>/<%=submittedTasks[i].dueDate.getMonth()+1%>/<%=submittedTasks[i].dueDate.getFullYear()%></p>
                     <p><span>Description : </span> <br>
                         <%=submittedTasks[i].description%>
                     </p>
