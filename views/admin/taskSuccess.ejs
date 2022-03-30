@@ -1,5 +1,12 @@
 <h2>Task Successfully Created </h2>
 
-<%= name %>
-<%= description %>
-<%= dueDate %>
+<%= name %> <br>
+<%= description %> <br>
+<%= dueDate %> <br>
+<script>
+    // redirect to task page
+    let taskId = '<%=taskId%>';
+    setTimeout(function () {
+        window.location.href = '/task/' + taskId;
+    }, 5000);
+</script>

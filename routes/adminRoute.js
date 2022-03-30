@@ -24,7 +24,7 @@ router.post('/task', authenticateToken, isAdmin, banCheck, (req, res) => {
     })
     task.save().then(task => {
         console.log('Task Added')
-        res.render('admin/taskSuccess', { name, description, dueDate, userInfo: req.user })
+        res.render('admin/taskSuccess', { name, description, dueDate, userInfo: req.user, taskId })
     }).catch(err => {
         console.log(err)
         res.render('error')
@@ -36,7 +36,7 @@ router.post('/review', authenticateToken, isAdmin, banCheck, async (req, res) =>
     try {
         const submission = await Submission.findOneAndUpdate({ taskId, userEmail }, { $set: { comment, points, isReviewed: true } })
         await User.findOneAndUpdate({ email: userEmail }, { $inc: { points: points } })
-        res.render('admin/reviewSuccess', { submission, userInfo: req.user })
+        res.render('admin/reviewSuccess', { submission, userInfo: req.user , taskId})
     } catch (err) {
         console.log(err)
         res.render('error')

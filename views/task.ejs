@@ -89,8 +89,8 @@
                     Description Given: <%= submissions[i].notes %> <br>
                     By User: <%= submissions[i].userEmail %> <br>
                     Total Points: <%= task.points %> <br>
-                    <li>Link given:- <a target="_blank" href="<%= submissions[i].link%>">
-                            <%= submissions[i].link %> - <%= submissions[i].userEmail %> </a></li>
+                    Link given:- <a target="_blank" href="<%= submissions[i].link%>">
+                        <%= submissions[i].link %> </a>
                     <form action="/admin/review" method="post">
                         <input name="taskId" value="<%= task.id %>" type="hidden">
                         <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">

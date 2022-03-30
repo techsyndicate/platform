@@ -1,1 +1,8 @@
-<h2> <%=activity%> </h2>
+<h2> <%=user.name%> Successfully <%=activity%> </h2>
+<h2>Redirecting to admin page</h2>
+<script>
+    // redirect to task page
+    setTimeout(() => {
+        window.location.href = "/admin";
+    }, 3000)
+</script>
