@@ -13,18 +13,7 @@
             <span>Points</span> <%=userInfo.points%>
         </p>
         <p>
-            <span>Tasks</span> <br>
-            <% if(userInfo.tasks.length > 0){ %>
-                <% for(var i = 0; i < userInfo.tasks.length; i++){ %>
-                    <%=userInfo.tasks[i].name%>
-                    <% if(i != userInfo.tasks.length - 1){ %>
-                        ,
-                    <% } %>
-                <% } %>
-            <% } else { %>
-                None
-            <% } %>
-        </p>
+            <span>Tasks Completed</span> <%=userInfo.tasks.length%>
     </div>
     <a href="/logout">
         Logout

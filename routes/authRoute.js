@@ -102,11 +102,12 @@ router.get("/callback", (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    if (!req.user) {
-        return res.redirect('/login')
-    }
+    // if (!req.user) {
+    //     return res.redirect('/login')
+    // }
     res.clearCookie('token')
-    res.redirect('/')
+    req.user = null
+    return res.redirect('/')
 })
 
 module.exports = router;

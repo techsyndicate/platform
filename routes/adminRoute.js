@@ -54,7 +54,9 @@ router.get('/users', authenticateToken, isAdmin, banCheck, async (req, res) => {
 
 router.post('/users/ban', authenticateToken, isAdmin, banCheck, async (req, res) => {
     const { userId } = req.body;
-    const user = await User.findByIdAndUpdate(userId, { $set: { isBanned: true } }).catch(err => {
+    // reverse isBanned of user
+    const user1 = await User.findById(userId);
+    const user = await User.findByIdAndUpdate(userId, { $set: { isBanned: !user1.isBanned } }).catch(err => {
         console.log(err)
         res.render('error')
     })

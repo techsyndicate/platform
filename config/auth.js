@@ -30,7 +30,7 @@ module.exports = {
             }
                 )
         } else {
-
+            return next()
         }
     },
     isAdmin: function (req, res,next) {
