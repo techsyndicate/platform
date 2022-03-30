@@ -474,7 +474,7 @@ body {
   margin: 1.5% 7.5%;
 }
 
-.task input {
+.task input, .task textarea {
   background: transparent;
   width: 50vh;
   border: none;
@@ -484,11 +484,11 @@ body {
   transition: all 0.5s ease;
 }
 
-.task input::placeholder {
+.task input::placeholder, .task textarea::placeholder {
   color: #eee
 }
 
-.task input:focus {
+.task input:focus, .task textarea:focus {
   outline: none;
   border-bottom: 2px solid #16e16e;
 }
@@ -532,4 +532,9 @@ input {
 .details a,
 .admin-dash a {
   color: #fff;
+}
+
+.task p {
+  word-wrap: break-word;
+  white-space: pre-line;
 }

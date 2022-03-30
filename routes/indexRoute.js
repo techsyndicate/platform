@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../models/userModel');
 const {checkUser}= require('../config/auth')
 
-router.get('/', (req, res) => {
+router.get('/', checkUser, (req, res) => {
     res.render('index', { userInfo: req.user })
 })
 

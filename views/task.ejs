@@ -7,9 +7,9 @@
         <% } %>
         <!-- Display details of taks -->
         <p style="word-wrap: break-word; white-space: pre-line;">
-            <span>Name:</span> <%= task.name %><br>
+            <span>Name:</span> <%- task.name %><br>
             <span>Description:</span> <%- task.description %><br>
-            <span>Due:</span> <%= dueDate %><br>
+            <span>Due:</span> <%- dueDate %><br>
         </p>
     </div>
     <div class="details">
@@ -18,16 +18,16 @@
             <% if (ifReviewed) { %>
             <div>
                 <h2 style="color: #fff;">The Task has been reviewed</h2>
-                <p>Link given:- <a target="_blank" href="<%= task.link%>"><%= task.link%></a></p>
-                <p>Description:- <%= description %> </p>
-                <p>Points:-<%= points %>/<%= task.points %></p>
-                <p>Comment By Admin:-<%= comment %></p>
+                <p>Link given:- <a target="_blank" href="<%- task.link%>"><%- task.link%></a></p>
+                <p>Description:- <%- description %> </p>
+                <p>Points:-<%- points %>/<%- task.points %></p>
+                <p>Comment By Admin:-<%- comment %></p>
             </div>
             <% } else { %>
             <div>
                 <h2 style="color: #fff;">This task has been submitted but not yet reviewed by Admin</h2>
-                <p>Link given: <a target="_blank" href="<%= task.link%>"><%= task.link%></a></p>
-                <p>Description Given: <%= description || 'No Description Given' %> </p>
+                <p>Link given: <a target="_blank" href="<%- task.link%>"><%- task.link%></a></p>
+                <p>Description Given: <%- description || 'No Description Given' %> </p>
             </div>
             <% } %>
             <h3 style="color: #16e16e; font-size: 1.7vw;"> Chat With Admin </h3>
@@ -37,9 +37,9 @@
                     <% for (var i = 0; i < userMessages.length; i++) { %>
                     <div>
                         <% if (userMessages[i].fromAdmin == true) {  %>
-                        Admin: <%= userMessages[i].comment %> <br>
+                        Admin: <%- userMessages[i].comment %> <br>
                         <% } else { %>
-                        You: <%= userMessages[i].comment %> <br>
+                        You: <%- userMessages[i].comment %> <br>
                         <% } %>
                     </div>
                     <% } %>
@@ -50,8 +50,8 @@
                 <br>
                 <% if (!ifReviewed) { %>
                 <form action="/task/chat" method="post">
-                    <input name="taskId" value="<%= task.id %>" type="hidden">
-                    <input name="userEmail" value="<%= user.email %>" type="hidden">
+                    <input name="taskId" value="<%- task.id %>" type="hidden">
+                    <input name="userEmail" value="<%- user.email %>" type="hidden">
                     <input name="comment" type="text" placeholder="Message" required autocomplete="off">
                     <br><br>
                     <button type="submit">Send</button>
@@ -62,11 +62,11 @@
         <% } else if (ifDue) { %>
         <h3>Submit</h3>
         <form action="/task/submit" method="post">
-            <input name="taskId" value="<%= task.id %>" type="hidden">
-            <input name="userEmail" value="<%= user.email %>" type="hidden">
+            <input name="taskId" value="<%- task.id %>" type="hidden">
+            <input name="userEmail" value="<%- user.email %>" type="hidden">
             <input name="link" type="url" placeholder="Link" required autocomplete="off">
             <br><br>
-            <input name="notes" type="text" placeholder="Description" autocomplete="off">
+            <textarea name="notes" type="text" placeholder="Description" autocomplete="off"></textarea>
             <br><br>
             <button type="submit">Submit Task</button>
         </form>
@@ -83,17 +83,17 @@
             <div style="border: 1px solid #fff; padding:15px; display:flex; justify-content:space-between;">
                 <!-- TODO: Make collabsable with name as heading which opens up further details, add total points field -->
                 <div class="admin-details" style="width: 45%;">
-                    Reviewed: <%= submissions[i].isReviewed %> <br>
-                    Comment: <%= submissions[i].comment %> <br>
-                    Points: <%= submissions[i].points %> <br>
-                    Description Given: <%= submissions[i].notes %> <br>
-                    By User: <%= submissions[i].userEmail %> <br>
-                    Total Points: <%= task.points %> <br>
-                    Link given:- <a target="_blank" href="<%= submissions[i].link%>">
-                        <%= submissions[i].link %> </a>
+                    Reviewed: <%- submissions[i].isReviewed %> <br>
+                    Comment: <%- submissions[i].comment %> <br>
+                    Points: <%- submissions[i].points %> <br>
+                    <p>Description Given: <%- submissions[i].notes %></p> <br>
+                    By User: <%- submissions[i].userEmail %> <br>
+                    Total Points: <%- task.points %> <br>
+                    Link given:- <a target="_blank" href="<%- submissions[i].link%>">
+                        <%- submissions[i].link %> </a>
                     <form action="/admin/review" method="post">
-                        <input name="taskId" value="<%= task.id %>" type="hidden">
-                        <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
+                        <input name="taskId" value="<%- task.id %>" type="hidden">
+                        <input name="userEmail" value="<%- submissions[i].userEmail %>" type="hidden">
                         <input name="points" type="number" placeholder="Points" required autocomplete="off"> <br><br>
                         <input name="comment" type="text" placeholder="Comment" autocomplete="off"> <br><br>
                         <br>
@@ -108,17 +108,17 @@
                         <% if (messages[j].userEmail == submissions[i].userEmail) { %>
                         <div>
                             <% if (messages[j].fromAdmin == true) { %>
-                            Admin: <%= messages[j].comment %> <br>
+                            Admin: <%- messages[j].comment %> <br>
                             <% } else { %>
-                            User: <%= messages[j].comment %> <br>
+                            User: <%- messages[j].comment %> <br>
                             <% } %>
                         </div>
                         <% } %>
                     </div>
                     <% } %>
                     <form action="/admin/chat" method="post">
-                        <input name="taskId" value="<%= task.id %>" type="hidden">
-                        <input name="userEmail" value="<%= submissions[i].userEmail %>" type="hidden">
+                        <input name="taskId" value="<%- task.id %>" type="hidden">
+                        <input name="userEmail" value="<%- submissions[i].userEmail %>" type="hidden">
                         <input name="comment" type="text" placeholder="Message" required autocomplete="off">
                         <br><br>
                         <button type="submit">Send</button>
