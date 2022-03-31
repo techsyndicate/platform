@@ -112,7 +112,6 @@ router.post('/chat', authenticateToken, banCheck, async (req, res) => {
         pointsChange: 0,
         activity: 'chat'
     }).save().then(doc => {
-        console.log(doc)
         res.redirect('/task/' + taskId)
     }).catch(err => {
         console.log(err)
