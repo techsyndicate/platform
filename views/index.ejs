@@ -77,22 +77,23 @@
 <script>
     //accordions
     var faq = document.querySelectorAll('.fa-card');
-    faq.forEach(function (card) {
-        card.addEventListener('click', function () {
+    faq.forEach(function(card){
+        card.addEventListener('click', function(){
             var content = this.querySelector('.faq-content');
             var header = this.querySelector('.faq-header');
             var icon = this.querySelector('i');
-            if (content.style.maxHeight) {
+            if(content.style.maxHeight){
                 content.style.maxHeight = null;
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
                 content.classList.add('fade')
                 content.style.display = 'block'
-            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+
+            }else{
                 content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.display = 'none'
                 icon.classList.remove('fa-chevron-down');
                 icon.classList.add('fa-chevron-up');
-                content.style.display = 'none'
             }
         })
     })
