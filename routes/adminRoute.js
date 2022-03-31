@@ -23,7 +23,6 @@ router.post('/task', authenticateToken, isAdmin, banCheck, (req, res) => {
         dueDate
     })
     task.save().then(task => {
-        console.log('Task Added')
         let taskId = task._id;
         res.render('admin/taskSuccess', { name, description, dueDate, userInfo: req.user, taskId })
     }).catch(err => {
@@ -84,7 +83,6 @@ router.post('/chat', authenticateToken, isAdmin, banCheck, async (req, res) => {
         pointsChange: 0,
         activity: 'chat'
     }).save().then(doc => {
-        console.log(doc)
         res.redirect('/task/' + taskId)
     }).catch(err => {
         console.log(err)

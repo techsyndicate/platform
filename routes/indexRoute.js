@@ -7,7 +7,7 @@ router.get('/', checkUser, (req, res) => {
 })
 
 router.get('/leaderboard', checkUser, async (req, res) => {
-    console.log(req.user)
+    
     const users = await User.find({ isBanned: false, isAdmin: false }).sort({ points: -1 })
     let user = req.user
     if (user) {
