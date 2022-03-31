@@ -482,6 +482,7 @@ body {
   color: #eee;
   padding: 10px;
   transition: all 0.5s ease;
+  font-family: "Sofia Pro", sans-serif;
 }
 
 .task input::placeholder, .task textarea::placeholder {
