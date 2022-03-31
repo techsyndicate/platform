@@ -45,9 +45,7 @@ router.post('/review', authenticateToken, isAdmin, banCheck, async (req, res) =>
 })
 
 router.get('/users', authenticateToken, isAdmin, banCheck, async (req, res) => {
-    // TODO: uncheck this comment for final prod
-    // const users = await User.find({isAdmin:false});
-    const users = await User.find({});
+    const users = await User.find({isAdmin:false});
     res.render('admin/users', { users, userInfo: req.user })
 
 })
