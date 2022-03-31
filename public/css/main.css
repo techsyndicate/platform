@@ -45,19 +45,21 @@ body {
 }
 
 /*landing div*/
+.landing-div{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .landing-div img {
-  position: absolute;
-  margin: 15% 47.5%;
   width: 75vh;
-  padding-top: 20px;
 }
 
 .landing-div h1 {
-  position: absolute;
   font-size: 7.5vw;
   letter-spacing: 2px;
   z-index: 10;
-  margin: 30% 5%;
 }
 
 .landing-div h1 span {
@@ -545,7 +547,7 @@ input {
   width: 100%;
   left: 0;
   padding-bottom: 5%;
-  margin-top: 55%;
+  margin-top: 5%;
   position: absolute;
 }
 .faq-div h1{
@@ -614,3 +616,6 @@ input {
   z-index: 10;
   padding: 10px;
 } */
+.centered{
+  
+}
