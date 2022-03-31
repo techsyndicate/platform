@@ -41,7 +41,7 @@ body {
 }
 
 .navbar li a:hover::after {
-  width: 115%;
+  width: 100%;
 }
 
 /*landing div*/
@@ -79,11 +79,11 @@ body {
 .user-info {
   position: absolute;
   margin: 15% 7.5%;
+  font-size: 1.5vw;
 }
 
 .user-info span {
   color: #16e16e;
-  font-size: 1.5vw;
 }
 
 .user-profile-div a {
@@ -169,7 +169,7 @@ body {
 }
 
 .task-card:hover {
-  transform: translateY(-10px) scale(1.05);
+  transform: translateY(-10px) scale(1.01);
   box-shadow: 0 0 10px #111;
 }
 
@@ -255,15 +255,15 @@ body {
   position: absolute;
   color: #eee;
   border: none;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #16e16e;
   background: transparent;
   padding-left: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   font-size: 1.25vw;
   font-family: 'Sofia Pro', sans-serif;
   transition: all .5s ease;
 }
-
+/* .leaderboard-div #search::before{} */
 .leaderboard-div #search::placeholder {
   color: #eee;
 }
@@ -289,7 +289,7 @@ body {
   background: #16e16e;
   color: #191919;
   padding: 10px;
-  font-size: 1.75vw;
+  font-size: 1.5vw;
 }
 
 .users table tbody td {
@@ -327,7 +327,7 @@ body {
 }
 
 .admin-users-display .user-card:hover {
-  transform: translateY(-10px) scale(1.05);
+  transform: translateY(-10px) scale(1.01);
   box-shadow: 0 0 10px #111;
 }
 
