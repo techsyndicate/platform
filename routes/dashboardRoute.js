@@ -50,7 +50,7 @@ router.get('/', authenticateToken, banCheck, async (req, res) => {
 
 })
 
-router.get('/userProfile', authenticateToken, banCheck, async (req, res) => {
+router.get('/profile', authenticateToken, banCheck, async (req, res) => {
     const user = req.user
     const userId = req.user.id
     const taskIds = req.user.tasks

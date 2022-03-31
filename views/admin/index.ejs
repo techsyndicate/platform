@@ -12,13 +12,15 @@
     <div class="tasks">
         <h2>Tasks</h2>
         <% for( let i = 0; i < tasks.length; i++ ) { %>
-        <div class="task-card">
-            <p><span>Task name : </span><%= tasks[i].name %></p>
-            <p><span>Task description : </span><%= tasks[i].description%> </p>
-            <p><span>Points : </span><%= tasks[i].points %></p>
-            <p><span>Category : </span><%= tasks[i].category %></p>
-            <p><span>Submissions: </span><%= tasks[i].submissions.length%> </p>
-        </div>
+        <a href="/task/<%=tasks[i].id%>" style="text-decoration: none; color: #eee;">
+            <div class="task-card">
+                <p><span>Task name : </span><%= tasks[i].name %></p>
+                <p><span>Task description : </span><%= tasks[i].description%> </p>
+                <p><span>Points : </span><%= tasks[i].points %></p>
+                <p><span>Category : </span><%= tasks[i].category %></p>
+                <p><span>Submissions: </span><%= tasks[i].submissions.length%> </p>
+            </div>
+        </a>
         <% } %>
     </div>
 
