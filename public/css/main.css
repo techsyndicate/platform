@@ -46,9 +46,9 @@ body {
 
 /*landing div*/
 .landing-div img {
-  display: block;
-  margin: 1.5% auto;
-  width: 90vh;
+  position: absolute;
+  margin: 15% 47.5%;
+  width: 75vh;
   padding-top: 20px;
 }
 
@@ -167,7 +167,7 @@ body {
 }
 
 .task-card:hover {
-  transform: translateY(-10px) scale(1.1);
+  transform: translateY(-10px) scale(1.05);
   box-shadow: 0 0 10px #111;
 }
 
@@ -539,3 +539,77 @@ input {
   word-wrap: break-word;
   white-space: pre-line;
 }
+/*faq div*/
+.faq-div{
+  height: 50vh;
+  width: 100%;
+  left: 0;
+  padding-bottom: 5%;
+  margin-top: 55%;
+  position: absolute;
+}
+.faq-div h1{
+  font-size: 3.5vw;
+  letter-spacing: 1.5px;
+  margin-top: 1.75%;
+  text-align: center;
+}
+.faq-div hr{
+  width: 25%;
+  margin-left:auto;
+  margin-right: auto;
+  height: .5vh;
+  display: block;
+  background-color: #16e16e;
+  border: none;
+}
+.faq-blob{
+  margin-top: 2.5%;
+}
+.faq-header{
+  font-size: 1.5vw;
+  margin-top: 1.5%;
+  border:none;
+  color: #eee;
+  display: block;
+  width: 75%;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.faq-header i{
+  float: right;
+  margin-right: 2.5vw;
+}
+.faq-header:hover{
+  color: #16e16e;
+}
+.faq-content{
+  display: none;
+  margin-left:13.5%;
+  margin-top:1.5%;
+  transition: all 0.5s ease;
+}
+.fade{
+  animation: fade 1s ease;
+  transition: all 0.5s ease;
+}
+@keyframes fade {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+/* .change{
+  background: red;
+  width: 90%;
+  left:0;
+  top: 0;
+  z-index: 10;
+  padding: 10px;
+} */
