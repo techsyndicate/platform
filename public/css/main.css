@@ -592,6 +592,7 @@ input {
   margin-left:13.5%;
   margin-top:1.5%;
   transition: all 0.5s ease;
+  width: 70%;
 }
 .fade{
   animation: fade 1s ease;
