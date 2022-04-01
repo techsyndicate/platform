@@ -16,6 +16,7 @@ body {
   list-style: none;
   margin-top: 40px;
   position: fixed;
+  z-index: 10;
 }
 
 .navbar li {
@@ -159,9 +160,9 @@ body {
 
 .task-card {
   background-color: #191919;
-  padding: 10px;
+  padding: 15px 15px 30px 15px;
   border-radius: 10px;
-  width: 100vh;
+  width: 75% !important;
   margin-left: 2.5%;
   margin-bottom: 2.5%;
   transition: all .5s ease;
@@ -616,6 +617,34 @@ input {
   z-index: 10;
   padding: 10px;
 } */
-.centered{
-  
+
+footer{
+  position: absolute;
+  top: 200%;
+  height: 10vh;
+  width: 100%;
+  left: 0;
+  background-color: #191919;
+  color: #eee;
+}
+footer h3{
+  font-size: 1.25vw;
+  margin-top: 2%;
+  margin-left: 7.5%;
+}
+footer ul{
+  display: flex;
+  list-style: none;
+  margin-top: -2.75%;
+  float: right;
+  margin-right:10%; 
+}
+footer ul li{
+  margin-left: .5vw;
+  margin-right: .5vw;
+}
+footer ul li a{
+  color: #eee;
+  text-decoration: none;
+  font-size: 1.25vw;
 }
