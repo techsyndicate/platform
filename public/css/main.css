@@ -544,7 +544,7 @@ input {
 }
 /*faq div*/
 .faq-div{
-  height: 50vh;
+  height: 75vh;
   width: 100%;
   left: 0;
   padding-bottom: 5%;
@@ -647,4 +647,54 @@ footer ul li a{
   color: #eee;
   text-decoration: none;
   font-size: 1.25vw;
+}
+.accordion {
+  background-color: transparent;
+  color: #eee;
+  cursor: pointer;
+  font-family: 'Sofia Pro', sans-serif;
+  padding: 18px;
+  width: 80%;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+  outline: none;
+  margin-left: auto;
+  display: block;
+  margin-right: auto;
+  font-size: 1.25vw;
+  transition: 0.4s;
+}
+.accordion:hover{
+  color: #16e16e;
+}
+.accordion:after {
+  content: '\f078';
+  color: #eee;
+  font-family: 'Font Awesome 6 Free';
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+.accordion:hover::after{
+  color: #16e16e;
+}
+.active:after {
+  content: "\f077";
+}
+
+.panel {
+  padding:0 18px;
+  background-color: transparent;
+  max-height: 0;
+  margin-left: 11%;
+  margin-top: 1.5%;
+  width: 75%;
+  color: #eee;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.panel a {
+  color: #16e16e;
+  text-decoration: none;
 }
