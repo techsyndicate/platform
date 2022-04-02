@@ -55,29 +55,31 @@
         Yes, all important communication will be conveyed there, so it is essential that you are a member of the server. You can join the server from <a href="https://t11e.us/tg/discord" target="_blank"> here</a>.
     </div>
 </div>
-<footer>
-    <h3>Tech Syndicate</h3>
-    <ul class="socials">
-        <li>
-            <a href="#" target="_blank">
-                <i class="fab fa-facebook"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#" target="_blank">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#"><i class="fa fa-envelope"></i></a>
-        </li>
-    </ul>
-</footer>
+<div class="footer-div">
+    <footer>
+        <h3>Tech Syndicate</h3>
+        <ul class="socials">
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope"></i></a>
+            </li>
+        </ul>
+    </footer>
+</div>
 <script>
     //accordions
     var acc = document.getElementsByClassName("accordion");
@@ -88,9 +90,10 @@
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
+            panel.style.maxHeight = null;
         } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
+            panel.style.maxHeight = panel.scrollHeight + "px";
+
         } 
     });
     }

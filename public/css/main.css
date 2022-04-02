@@ -7,6 +7,9 @@ body {
   background: #000;
   color: #eee;
   font-family: 'Sofia Pro';
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar {
@@ -544,12 +547,11 @@ input {
 }
 /*faq div*/
 .faq-div{
-  height: 75vh;
+  min-height: calc(100vh - 100px);
   width: 100%;
   left: 0;
   padding-bottom: 5%;
   margin-top: 5%;
-  position: absolute;
 }
 .faq-div h1{
   font-size: 3.5vw;
@@ -596,6 +598,8 @@ input {
   margin-top:1.5%;
   transition: all 0.5s ease;
   width: 70%;
+  z-index: 1;
+
 }
 .fade{
   animation: fade 1s ease;
@@ -619,23 +623,21 @@ input {
 } */
 
 footer{
-  position: absolute;
-  top: 200%;
+  margin-top: -50px;
   height: 10vh;
   width: 100%;
-  left: 0;
   background-color: #191919;
   color: #eee;
 }
 footer h3{
   font-size: 1.25vw;
-  margin-top: 2%;
+  padding-top: 1.85%;
   margin-left: 7.5%;
 }
 footer ul{
   display: flex;
   list-style: none;
-  margin-top: -2.75%;
+  margin-top: -2.65%;
   float: right;
   margin-right:10%; 
 }
@@ -654,6 +656,7 @@ footer ul li a{
   cursor: pointer;
   font-family: 'Sofia Pro', sans-serif;
   padding: 18px;
+  position: relative;
   width: 80%;
   border: none;
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
