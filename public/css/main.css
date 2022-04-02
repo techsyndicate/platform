@@ -531,6 +531,7 @@ input {
 
 .chatbox {
   width: max-content;
+  max-width: 75vh;
   padding: 1.5vw;
   border-radius: 5px;
   background-color: #191919;
