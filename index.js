@@ -4,6 +4,7 @@ const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const https = require('https')
+const http = require('http')
 
 const cookieparser = require('cookie-parser')
 require('dotenv').config()
@@ -48,6 +49,7 @@ const options = {
     key: pvt_key,
     cert: cert
 }
+http.createServer(app).listen(port, () => console.log(`Server started on port ${port}`))
 https.createServer(options, app).listen(port, () => console.log(`Server started on port ${port}`))
 app.get('*',function(req,res,next){
     if(req.headers['x-forwarded-proto'] != 'https'){
