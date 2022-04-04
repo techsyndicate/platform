@@ -48,6 +48,11 @@ const options = {
     cert: cert
 }
 https.createServer(options, app).listen(port, () => console.log(`Server started on port ${port}`))
+app.get('*',function(req,res,next){
+    if(req.headers['x-forwarded-proto'] != 'https'){
+      res.redirect('https://platform.techsyndicate.us'+req.url);
+    } else next();
+  });
 
 // 404 page
 app.use((req, res, next) => {
