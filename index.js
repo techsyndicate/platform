@@ -11,6 +11,7 @@ require('dotenv').config()
 const app = express()
 const secret = process.env.SECRET
 app.set('view engine', 'ejs')
+app.enable('trust proxy')
 app.use(expressLayouts)
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
