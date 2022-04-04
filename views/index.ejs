@@ -1,60 +1,100 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
 <div class="centered">
     <div class="landing-div ">
         <img src="https://media.discordapp.net/attachments/844234171811233822/953711584461598720/Group_14.png?width=571&height=513" class="ts-snowglobe" alt="">
         <h1>
             Training <br>
             <span>Platform</span>
-        </h2>
+            </h2>
     </div>
 </div>
 <div class="faq-div" id="faq">
-        <h1>
-            Frequently Asked Questions
-        </h1>
-        <hr>
-        <div class="faq-blob">
-            <div class="fa-card">
-                <div class="faq-header">
-                    How do I get started?
-                    <i class="fa fa-chevron-up"></i>
-                </div>
-                <div class="faq-content">
-                    Click the "Sign Up" button on the top right of the page.
-                </div>
-            </div>
-            <div class="fa-card">
-                <div class="faq-header">
-                    How do I get started?
-                    <i class="fa fa-chevron-up"></i>
-                </div>
-                <div class="faq-content">
-                    Click the "Sign Up" button on the top right of the page.
-                </div>
-            </div>
-        </div>
+    <h1>
+        Frequently Asked Questions
+    </h1>
+    <hr>
+    <button class="accordion">
+        What is this platform?
+    </button>
+    <div class="panel">
+        <p>
+            This is our in-house tasks platform developed to improve tech skills of junior students.
+        </p>
+    </div>
+    <button class="accordion">
+        When will tasks be uploaded?
+    </button>
+    <div class="panel">
+        Tasks will be uploaded usually every Friday Night and stay open till next Friday Night. Once they are closed, you won't be able to submit them but still be able to see their content. Your submissions will be reviewed throught the week by admins.
+    </div>
+    <button class="accordion">
+        What kind of tasks will these be?
+    </button>
+    <div class="panel">
+        These tasks will be from the fields - of AppD, WebD, 2D,3D, UI designing, A/V editing, Cryptic Hunts, Capture The Flag, Group Discussions, Gaming. Programming challenges shall be hosted on the <a href="https://ts-prog1.herokuapp.com/"  target="_blank"> programming platform </a>. Crossword and Quiz questions will be hosted on google forms, the links to which will be posted on the discord server.
+    </div>
+    <button class="accordion">
+        How difficult will these tasks be?
+    </button>
+    <div class="panel">
+        The difficulty of tasks will gradually increase, and each weekend multiple tasks in the same field will be posted with varying difficulty.
+    </div>
+    <button class="accordion">
+        How to submit these tasks?
+    </button>
+    <div class="panel">
+        In order to submit a task, you are expected to provide a link and a description(optional). For most cases, the link will either be a google doc containing a link to the deliverables or a google drive folder with the relevant files. You might also be expected to submit a google doc containing the answers
+    </div>
+    <button class="accordion">
+        Do I need to join the discord server for this?
+    </button>
+    <div class="panel">
+        Yes, all important communication will be conveyed there, so it is essential that you are a member of the server. You can join the server from <a href="https://t11e.us/tg/discord" target="_blank"> here</a>.
+    </div>
+</div>
+<div class="footer-div">
+    <footer>
+        <h3>Tech Syndicate</h3>
+        <ul class="socials">
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope"></i></a>
+            </li>
+        </ul>
+    </footer>
 </div>
 <script>
-    
     //accordions
-    var faq = document.querySelectorAll('.fa-card');
-    faq.forEach(function(card){
-        card.addEventListener('click', function(){
-            var content = this.querySelector('.faq-content');
-            var header = this.querySelector('.faq-header');
-            var icon = this.querySelector('i');
-            if(content.style.maxHeight){
-                content.style.maxHeight = null;
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-                content.classList.add('fade')
-                content.style.display = 'block'
-            }else{
-                content.style.maxHeight = content.scrollHeight + 'px';
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-                content.style.display = 'none'
-            }
-        })
-    })
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+
+        } 
+    });
+    }
 </script>

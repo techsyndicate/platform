@@ -3,6 +3,7 @@ const ejs = require('ejs')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
+const https = require('https')
 
 const cookieparser = require('cookie-parser')
 require('dotenv').config()
@@ -34,12 +35,19 @@ app.use('/admin', adminRoute)
 app.use('/task', taskRoute)
 
 const pass = process.env.MONGO_PASS 
+const pvt_key = Buffer.from(process.env.PVT_KEY, 'base64').toString('ascii')
+const cert = Buffer.from(process.env.CERT, 'base64').toString('ascii')
 const port = process.env.PORT || 5000
 mongoose.connect(`mongodb+srv://techsyndicate:${pass}@cluster0.pbyaj.mongodb.net/data?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
     }).then(() => console.log('Connected to MongoDB'))
-app.listen(port, () => console.log(`Server started on port ${port}`))
+// app.listen(port, () => console.log(`Server started on port ${port}`))
+const options = {
+    key: pvt_key,
+    cert: cert
+}
+https.createServer(options, app).listen(port, () => console.log(`Server started on port ${port}`))
 
 // 404 page
 app.use((req, res, next) => {
