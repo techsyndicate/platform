@@ -40,8 +40,8 @@ let httpServer = http.createServer(app);
 
 app.use((req, res, next) => {
     // if http send to https
-    if (req.headers.host.includes('localhost:5001')) {
-        return res.redirect(301, `https://localhost:5000${req.url}`)
+    if (req.protocol === 'http') {
+        return res.redirect(301, `https://${req.headers.host}${req.url}`)
     }
     next();
 })
@@ -67,4 +67,4 @@ mongoose.connect(`mongodb+srv://techsyndicate:${pass}@cluster0.pbyaj.mongodb.net
 }).then(() => console.log('Connected to MongoDB'))
 
 httpsServer.listen(port, () => console.log(`Server started on port ${port}`))
-httpServer.listen(port1, () => console.log(`Server started on port ${port}`))
+httpServer.listen(port1, () => console.log(`Server started on port ${port1}`))
