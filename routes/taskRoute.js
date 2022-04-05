@@ -65,6 +65,14 @@ router.get('/:taskId', authenticateToken, banCheck, async (req, res) => {
 
 router.post('/submit', authenticateToken, banCheck, async (req, res) => {
     const { taskId, link, notes, userEmail } = req.body;
+    const submission = await Submission.findOne({taskId: taskId, userEmail: userEmail}).catch(err=> {
+        console.log(err)
+        res.render("error")
+    })
+    if (submission) {
+        // send unathuorized 
+        return res.sendStatus(401)
+    }
 
     const getTask = await Task.findById(taskId)
 

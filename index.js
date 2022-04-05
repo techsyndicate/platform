@@ -3,14 +3,16 @@ const ejs = require('ejs')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
-const https = require('https');
-const http = require('http');
+
+const https = require('https')
+const http = require('http')
 const cookieparser = require('cookie-parser')
 require('dotenv').config()
 
 const app = express()
 const secret = process.env.SECRET
 app.set('view engine', 'ejs')
+app.enable('trust proxy')
 app.use(expressLayouts)
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
@@ -52,8 +54,6 @@ app.use(indexRoute)
 app.use('/dashboard', dashboardRoute)
 app.use('/admin', adminRoute)
 app.use('/task', taskRoute)
-
-// 404 page
 app.use((req, res, next) => {
     res.render('404')
 })
@@ -66,6 +66,7 @@ mongoose.connect(`mongodb+srv://techsyndicate:${pass}@cluster0.pbyaj.mongodb.net
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log('Connected to MongoDB'))
+
 
 httpsServer.listen(port, () => console.log(`Server started on port ${port}`))
 httpServer.listen(port1, () => console.log(`Server started on port ${port1}`))

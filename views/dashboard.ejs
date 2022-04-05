@@ -28,9 +28,10 @@
                     <p><span>Name : </span><%=openTasks[i].name%></p>
                     <p><span>Points : </span><%=openTasks[i].points%></p>
                     <p><span>Due Date : </span><%=openTasks[i].dueDate.getDate() %>/<%=openTasks[i].dueDate.getMonth()+1%>/<%=openTasks[i].dueDate.getFullYear()%> </p>
+                    <p><span>Category : </span><%=openTasks[i].category%></p>
                     <p><span>Description : </span> <br>
-                        <%=openTasks[i].description%>
-                    </p>
+                        <%=openTasks[i].description.slice(0,140)+ '...'%>
+                    </p> 
                 </div>
             </a>
             <%}%>
