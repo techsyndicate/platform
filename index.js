@@ -39,6 +39,7 @@ let httpsServer = https.createServer(options, app);
 let httpServer = http.createServer(app);
 
 app.use((req, res, next) => {
+    console.log(`https://${req.headers.host}${req.url}`)
     // if http send to https
     if (req.protocol === 'http') {
         return res.redirect(301, `https://${req.headers.host}${req.url}`)
@@ -58,8 +59,8 @@ app.use((req, res, next) => {
 })
 
 const pass = process.env.MONGO_PASS
-const port = process.env.PORT || 5000
-const port1 = process.env.PORT1 || 5001
+const port = process.env.PORT || 443
+const port1 = process.env.PORT1 || 80
 
 mongoose.connect(`mongodb+srv://techsyndicate:${pass}@cluster0.pbyaj.mongodb.net/data?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
